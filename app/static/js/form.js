@@ -76,7 +76,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
         });
 
-    });
+    });    
+
+    // Inicializar hidden_foto desde la imagen ya renderizada en la vista previa
+    (function inicializarHiddenFoto() {
+        const hiddenFoto = document.getElementById('hidden_foto');
+        if (!hiddenFoto || hiddenFoto.value) return;
+    
+        // Buscar la primera imagen de la vista previa (cubre distintas plantillas)
+        const previewImg = document.querySelector('.cv-preview-wrapper img')
+                         || document.querySelector('.photo img')
+                         || document.querySelector('.photo-preview');
+    
+        if (previewImg && previewImg.src) {
+            hiddenFoto.value = previewImg.src;
+        }
+    })();
 
 });
 
