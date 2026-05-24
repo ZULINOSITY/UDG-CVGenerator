@@ -1,0 +1,11 @@
+[build]
+# Railway usará el Dockerfile de la raíz
+dockerfile = "Dockerfile"
+
+[deploy]
+# Puerto que Railway debe escuchar (debe coincidir con el EXPOSE del Dockerfile)
+startCommand = "gunicorn -w 2 --timeout 120 -b 0.0.0.0:8000 run:app"
+healthcheckPath = "/"
+healthcheckTimeout = 30
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3

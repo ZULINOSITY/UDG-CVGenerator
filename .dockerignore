@@ -1,0 +1,31 @@
+# Control de versiones
+.git
+.gitignore
+
+# Entorno virtual local (no va al contenedor)
+venv/
+env/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Variables de entorno locales (se configuran en Railway)
+.env
+.env.*
+
+# Archivos del editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Logs y temporales
+*.log
+tmp/
+temp/
