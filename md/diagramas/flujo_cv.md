@@ -30,36 +30,6 @@ flowchart TD
 	X --> DOC
 ```
 
-```mermaid
-erDiagram
-	USUARIOS ||--o{ DOCUMENTOS : crea
-
-	USUARIOS {
-		ObjectId _id
-		string nombre
-		string correo
-		string password_hash
-	}
-
-	DOCUMENTOS {
-		ObjectId _id
-		string tipo_documento
-		string usuario_id
-		string nombre_completo
-		string profesion
-		string telefono
-		string email
-		string perfil
-		string experiencia
-		string educacion
-		string habilidades
-		string idiomas
-		string referencias
-		string foto
-		string plantilla
-	}
-```
-
 ## Relacion entre entidades
 
 - `usuarios` guarda la cuenta que inicia sesion.
