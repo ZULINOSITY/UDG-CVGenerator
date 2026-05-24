@@ -13,12 +13,14 @@
 - `SECRET_KEY`
 - `MONGO_URI`
 
-### Instalación de compilador en el equipo.
+### Instalación de compilador en el equipo
+
 1. Descargar instalador de compilador de GTK3.
-2. https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2022-01-04/gtk3-runtime-3.24.31-2022-01-04-ts-win64.exe
+2. <https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2022-01-04/gtk3-runtime-3.24.31-2022-01-04-ts-win64.exe>
 3. Ejecutar y spamear Next.
 
-### Instalación de modulos para python.
+### Instalación de modulos para python
+
 1. Ejecutar pip con el siguiente comando en la terminal del proyecto.
 2. `pip install -r requirements.txt`
 
@@ -26,7 +28,6 @@
 
 1. Ejecuta `run.py`
 2. Disfruta :V
-
 
 ## Puntos sensibles
 
