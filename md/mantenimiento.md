@@ -5,17 +5,26 @@
 - Python con Flask.
 - MongoDB accesible desde `MONGO_URI`.
 - Dependencias instaladas desde `modules.txt`.
+- Compilador GTK3 para Windows
 
 ## Variables de entorno
 
 - `SECRET_KEY`
 - `MONGO_URI`
 
+### Instalación de compilador en el equipo.
+1. Descargar instalador de compilador de GTK3.
+2. https://github.com/tschoonj/GTK-for-Windows-Runtime-Environment-Installer/releases/download/2022-01-04/gtk3-runtime-3.24.31-2022-01-04-ts-win64.exe
+3. Ejecutar y spamear Next.
+
+### Instalación de modulos para python.
+1. Ejecutar pip con el siguiente comando en la terminal del proyecto.
+2. `pip install -r modules.txt`
+
 ## Arranque local
 
-1. Instala dependencias.
-2. Define las variables de entorno.
-3. Ejecuta `run.py`.
+Ejecuta `run.py`
+
 
 ## Puntos sensibles
 
