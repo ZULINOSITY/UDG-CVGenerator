@@ -6,6 +6,7 @@
 - MongoDB accesible desde `MONGO_URI`.
 - Dependencias instaladas desde `modules.txt`.
 - Compilador GTK3 para Windows
+- Inicializar .env
 
 ## Variables de entorno
 

@@ -5,7 +5,7 @@ Esta carpeta concentra una guia corta y viva sobre como funciona la aplicacion y
 ## Contenido
 
 - [Arquitectura general](/md/arquitectura.md)
-- [Flujo del usuario](/md/flujo_usuario.md)
+- [Flujo del usuario](/md/diagramas/flujo_usuario.md)
 - [Como programar actualizaciones](/md/actualizaciones.md)
 - [Mantenimiento y despliegue](/md/mantenimiento.md)
 
