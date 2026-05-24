@@ -19,11 +19,12 @@
 
 ### Instalación de modulos para python.
 1. Ejecutar pip con el siguiente comando en la terminal del proyecto.
-2. `pip install -r modules.txt`
+2. `pip install -r requirements.txt`
 
 ## Arranque local
 
-Ejecuta `run.py`
+1. Ejecuta `run.py`
+2. Disfruta :V
 
 
 ## Puntos sensibles
