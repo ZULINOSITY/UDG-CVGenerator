@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Builder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/inicio.css') }}">
+</head>
+<body>
+    <main class="main-content">
+        <p class="hero-tagline">Crea tu CV en minutos</p>
+        <h1 class="hero-title">¿Por dónde quieres<br>empezar?</h1>
+
+        <div class="cards-grid">
+            <a href="{{ url_for('auth.login') }}" class="action-card">
+                <button class="card-btn">Comenzar</button>
+            </a>
+            <a href="{{ url_for('auth.register') }}" class="action-card">
+                <button class="card-btn">Crear cuenta</button>
+            </a>
+        </div>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/inicio.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+/* NAVBAR */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: var(--bg-nav);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    color: white;
+    padding: .7rem 1.5rem;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* GENERAL CONTAINERS */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem;
+}
+
+.card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 1.5rem;
+    padding: 2rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,.4);
+}
+
+.card-title {
+    font-size: 2rem;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.text-gradient {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+/* FORMULARIOS */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: .5rem;
+    color: var(--text-muted);
+}
+
+.form-control {
+    width: 100%;
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    color: white;
+    padding: .9rem 1.2rem;
+    border-radius: 999px;
+    outline: none;
+    transition: .3s;
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+}
+
+/* BOTONES */
+.btn {
+    border: none;
+    cursor: pointer;
+    padding: .9rem 2rem;
+    border-radius: 999px;
+    font-weight: 700;
+    transition: .3s;
+    display: inline-block;
+}
+
+.btn-gradient {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    color: white;
+}
+
+.btn-gradient:hover {
+    transform: translateY(-2px);
+    opacity: .9;
+}
+
+.btn-light {
+    background: white;
+    color: black;
+}
+
+.btn-light:hover {
+    background: #e5e7eb;
+}
+
+.btn-danger {
+    background: var(--danger);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #dc2626;
+    transform: translateY(-2px);
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.nav-btn {
+    background: var(--bg-card);
+    padding: .7rem 1.3rem;
+}
+
+.nav-btn:hover {
+    background: var(--danger);
+    color: white;
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="cv-container cv-harvard">
+        <div class="header">
+            <h1 class="name" contenteditable="true" data-field="nombre">{{ (doc.nombre_completo or 'NOMBRE Y APELLIDO') | safe }}</h1>
+            <h2 class="job" contenteditable="true" data-field="profesion">{{ (doc.profesion or 'PROFESIÓN') | safe }}</h2>
+            <div class="contact">
+                <div contenteditable="true" data-field="telefono">{{ (doc.telefono or '1234-5678') | safe }}</div>
+                <span>•</span>
+                <div contenteditable="true" data-field="email">{{ (doc.email or 'correo@ejemplo.com') | safe }}</div>
+            </div>
+        </div>
+        <div class="section">
+            <h3 class="section-title">SOBRE MÍ</h3>
+            <div class="content" contenteditable="true" data-field="perfil">{{ (doc.perfil or 'Descripción...') | safe }}</div>
+        </div>
+        <div class="section">
+            <h3 class="section-title">EXPERIENCIA</h3>
+            <div class="content" contenteditable="true" data-field="experiencia">{{ (doc.experiencia or 'Experiencia...') | safe }}</div>
+        </div>
+        <div class="section">
+            <h3 class="section-title">EDUCACIÓN</h3>
+            <div class="content" contenteditable="true" data-field="educacion">{{ (doc.educacion or 'Educación...') | safe }}</div>
+        </div>
+        <div class="double-section">
+            <div class="mini-section">
+                <h3 class="section-title">HABILIDADES</h3>
+                <div class="content" contenteditable="true" data-field="habilidades">{{ (doc.habilidades or 'Habilidades...') | safe }}</div>
+            </div>
+            <div class="mini-section">
+                <h3 class="section-title">IDIOMAS</h3>
+                <div class="content" contenteditable="true" data-field="idiomas">{{ (doc.idiomas or 'Idiomas...') | safe }}</div>
+            </div>
+        </div>
+        <div class="section">
+            <h3 class="section-title">REFERENCIAS</h3>
+            <div class="content" contenteditable="true" data-field="referencias">{{ (doc.referencias or 'Referencias...') | safe }}</div>
+        </div>
+    </div>
+</body>
+</html>

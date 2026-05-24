@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="editor-layout">
+    <div class="editor-sidebar">
+        <div class="editor-toolbar">
+            <div>
+                <label class="toolbar-label">Elegir Diseño Final:</label>
+                <select id="select_plantilla" class="form-control toolbar-select">
+                    <option value="estetico" {% if doc.plantilla == 'estetico' %}selected{% endif %}>Estetico</option>
+                    <option value="convencional" {% if doc.plantilla == 'convencional' %}selected{% endif %}>Convencional</option>
+                    <option value="harvard" {% if doc.plantilla == 'harvard' %}selected{% endif %}>Harvard</option>
+                    <option value="formal" {% if doc.plantilla == 'formal' %}selected{% endif %}>Formal</option>
+                    <option value="decorada" {% if doc.plantilla == 'decorada' %}selected{% endif %}>Decorada</option>
+                </select>
+            </div>
+            <div class="toolbar-actions">
+                <button onclick="guardarDocumento()" class="btn btn-gradient btn-block">Guardar Documento</button>
+                <a href="{{ url_for('core.dashboard') }}" class="btn btn-light btn-block" style="text-align: center;">Cancelar</a>
+            </div>
+        </div>
+        <div class="photo-upload-container">
+            <label class="photo-upload-label" style="color: white; font-weight: bold; margin-bottom: 0.5rem; display: block;">Subir Foto:</label>
+            <input type="file" id="inputFoto" accept="image/*" class="form-control" onchange="previsualizarFoto(event)">
+        </div>
+        <div class="editor-info">
+            Haz clic sobre cualquier texto para editarlo. Los cambios se sincronizan automáticamente entre todas las plantillas.
+        </div>
+    </div>
+
+    <div class="editor-main">
+        <div id="editor-canvases">
+            <div id="tpl_estetico" class="cv-preview-wrapper" style="display:none;">{% include 'plantillasCV/estetico.html' %}</div>
+            <div id="tpl_convencional" class="cv-preview-wrapper" style="display:none;">{% include 'plantillasCV/convencional.html' %}</div>
+            <div id="tpl_harvard" class="cv-preview-wrapper" style="display:none;">{% include 'plantillasCV/harvard.html' %}</div>
+            <div id="tpl_formal" class="cv-preview-wrapper" style="display:none;">{% include 'plantillasCV/formal.html' %}</div>
+            <div id="tpl_decorada" class="cv-preview-wrapper" style="display:none;">{% include 'plantillasCV/decorada.html' %}</div>
+        </div>
+    </div>
+</div>
+
+<form action="" method="POST" id="formGuardar" style="display:none;">
+    <input type="hidden" name="plantilla" id="hidden_plantilla">
+    <input type="hidden" name="nombreCompleto" id="hidden_nombre">
+    <input type="hidden" name="profesion" id="hidden_profesion">
+    <input type="hidden" name="telefono" id="hidden_telefono">
+    <input type="hidden" name="email" id="hidden_email">
+    <input type="hidden" name="perfil" id="hidden_perfil">
+    <input type="hidden" name="experiencia" id="hidden_experiencia">
+    <input type="hidden" name="educacion" id="hidden_educacion">
+    <input type="hidden" name="habilidades" id="hidden_habilidades">
+    <input type="hidden" name="idiomas" id="hidden_idiomas">
+    <input type="hidden" name="referencias" id="hidden_referencias">
+    <input type="hidden" name="foto" id="hidden_foto">
+</form>
+
+<script src="{{ url_for('static', filename='js/form.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,164 @@
+@page {
+    size: A4;
+    margin: 0;
+}
+
+@media print {
+    html, body {
+        width: 210mm;
+        height: 297mm;
+        background: white !important;
+        margin: 0;
+        padding: 0;
+    }
+
+    body * {
+        visibility: hidden;
+    }
+
+    .cv-container,
+    .cv-container * {
+        visibility: visible;
+    }
+
+    .cv-container {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 210mm !important;
+        min-height: 297mm !important;
+        margin: 0 !important;
+        box-shadow: none !important;
+        overflow: hidden;
+        page-break-after: avoid;
+        page-break-inside: avoid;
+    }
+
+    .cv-estetico,
+    .cv-convencional,
+    .cv-harvard {
+        width: 100%;
+        min-height: 297mm;
+        box-sizing: border-box;
+    }
+
+    .editor-toolbar,
+    .editor-info,
+    .photo-upload-container,
+    .navbar {
+        display: none !important;
+    }
+
+    /* ESTETICO COMPRIMIDO */
+    .cv-estetico {
+        padding: 1.5rem !important;
+    }
+
+    .cv-estetico .header {
+        margin-bottom: 1.5rem !important;
+        padding-bottom: 1rem !important;
+    }
+
+    .cv-estetico .content {
+        gap: 1.2rem !important;
+    }
+
+    .cv-estetico .section-content {
+        line-height: 1.5 !important;
+    }
+
+    /* HARVARD COMPRIMIDO */
+    .cv-harvard {
+        padding: 1.5rem !important;
+    }
+
+    .cv-harvard .header {
+        margin-bottom: 1.5rem !important;
+    }
+
+    .cv-harvard .section {
+        margin-bottom: 1.2rem !important;
+    }
+
+    .cv-harvard .section-title {
+        margin-bottom: 0.8rem !important;
+        padding: 0.3rem 0 !important;
+    }
+
+    .cv-harvard .content {
+        line-height: 1.5 !important;
+    }
+
+    /* CONVENCIONAL FLOAT TRICK */
+    .cv-convencional {
+        display: block !important;
+    }
+
+    .cv-convencional::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .cv-convencional .sidebar {
+        float: left !important;
+        width: 34% !important;
+        min-height: 297mm !important;
+    }
+
+    .cv-convencional .main {
+        float: left !important;
+        width: 66% !important;
+    }
+
+    .cv-formal {
+        display: block !important;
+    }
+
+    .cv-formal::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .cv-formal .sidebar {
+        float: left !important;
+        width: 35% !important;
+        min-height: 297mm !important;
+        border-right: 2px solid #d1d5db !important;
+    }
+
+    .cv-formal .main {
+        float: left !important;
+        width: 65% !important;
+    }
+
+    /* Reglas para PDF Decorada */
+    .cv-decorada {
+        display: block !important;
+        background-color: #e0f2fe !important;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .cv-decorada::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .cv-decorada .sidebar {
+        float: left !important;
+        width: 35% !important;
+        min-height: 297mm !important;
+        background-color: white !important;
+    }
+
+    .cv-decorada .sidebar-top {
+        background-color: #64748b !important;
+    }
+
+    .cv-decorada .main {
+        float: left !important;
+        width: 65% !important;
+    }
+}

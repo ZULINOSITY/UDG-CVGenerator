@@ -1,0 +1,52 @@
+/* PLANTILLA ESTÉTICA */
+.cv-estetico {
+    padding: 2.5rem;
+    font-family: Arial, sans-serif;
+}
+
+.cv-estetico .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+}
+
+.cv-estetico .name {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.cv-estetico .job {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: #6b7280;
+    margin: 0.5rem 0 0 0;
+}
+
+.cv-estetico .contact {
+    text-align: right;
+}
+
+.cv-estetico .divider {
+    border: 0;
+    border-top: 3px solid black;
+    margin: 2rem 0;
+}
+
+/* Estilo de fila */
+.cv-estetico .row {
+    display: flex;
+    margin-bottom: 1.5rem;
+}
+
+.cv-estetico .section-title {
+    width: 200px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.cv-estetico .section-content {
+    flex: 1;
+}

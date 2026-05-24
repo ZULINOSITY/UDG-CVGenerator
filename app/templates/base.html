@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Builder</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    
+    <nav class="navbar">
+        <a href="{{ url_for('core.index') }}" class="logo">CV Builder</a>
+        
+        <div class="nav-links">
+            {% if session.get('usuario_id') %}
+                <span class="nav-text">Hola, {{ session.get('nombre') }}</span>
+                <a class="nav-text" style="color: white; font-weight: 500;">Mis Plantillas</a>
+                <a href="{{ url_for('auth.logout') }}" class="btn nav-btn">Salir</a>
+            {% else %}
+                <span class="nav-text">Menú Login</span>
+            {% endif %}
+        </div>
+    </nav>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+        <div class="toast-container">
+
+        {% for category, message in messages %}
+
+            <div class="toast toast-{{ category }}">
+            {{ message }}
+            </div>
+
+        {% endfor %}
+
+        </div>
+  {% endif %}
+{% endwith %}
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+</body>
+</html>

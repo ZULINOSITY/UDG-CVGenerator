@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="card auth-card">
+        <h2 class="card-title">Iniciar sesión</h2>
+
+        <form action="{{ url_for('auth.login') }}" method="POST">
+            <div class="form-group">
+                <label>Correo electrónico</label>
+                <input type="email" name="correo" class="form-control" placeholder="correo@ejemplo.com" required>
+            </div>
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="btn btn-gradient btn-block">Entrar</button>
+        </form>
+
+        <div class="auth-footer">
+            ¿Aún no tienes cuenta? <a href="{{ url_for('auth.register') }}">Registrarme</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

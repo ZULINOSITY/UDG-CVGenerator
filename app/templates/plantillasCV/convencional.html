@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CV {{ (doc.nombre_completo or 'CV Profesional') | striptags }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="cv-body">
+    <div class="cv-container cv-convencional">
+        <div class="sidebar">
+            <div class="photo">
+                {% if doc.foto %}<img src="{{ doc.foto }}" class="photo-preview">{% else %}FOTO{% endif %}
+            </div>
+            <div class="sidebar-section">
+                <h3 class="s-title"><div class="s-dot"></div> CONTACTO</h3>
+                <div class="s-content" contenteditable="true" data-field="telefono">{{ (doc.telefono or '1234-5678') | safe }}</div>
+                <div class="s-content" contenteditable="true" data-field="email">{{ (doc.email or 'correo@ejemplo.com') | safe }}</div>
+            </div>
+            <div class="sidebar-section">
+                <h3 class="s-title"><div class="s-dot"></div> SOBRE MÍ</h3>
+                <div class="s-content" contenteditable="true" data-field="perfil">{{ (doc.perfil or 'Descripción...') | safe }}</div>
+            </div>
+            <div class="sidebar-section">
+                <h3 class="s-title"><div class="s-dot"></div> REFERENCIAS</h3>
+                <div class="s-content" contenteditable="true" data-field="referencias">{{ (doc.referencias or 'Referencias...') | safe }}</div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="header">
+                <h1 class="name" contenteditable="true" data-field="nombre">{{ (doc.nombre_completo or 'NOMBRE Y APELLIDO') | safe }}</h1>
+                <h2 class="job" contenteditable="true" data-field="profesion">{{ (doc.profesion or 'PROFESIÓN') | safe }}</h2>
+            </div>
+            <div class="main-section">
+                <h3 class="s-title main-title"><div class="s-dot dark"></div> EXPERIENCIA</h3>
+                <div class="m-content" contenteditable="true" data-field="experiencia">{{ (doc.experiencia or 'Experiencia...') | safe }}</div>
+            </div>
+            <div class="main-section">
+                <h3 class="s-title main-title"><div class="s-dot dark"></div> EDUCACIÓN</h3>
+                <div class="m-content" contenteditable="true" data-field="educacion">{{ (doc.educacion or 'Educación...') | safe }}</div>
+            </div>
+            <div class="main-section">
+                <h3 class="s-title main-title"><div class="s-dot dark"></div> IDIOMAS</h3>
+                <div class="m-content" contenteditable="true" data-field="idiomas">{{ (doc.idiomas or 'Idiomas...') | safe }}</div>
+            </div>
+            <div class="main-section">
+                <h3 class="s-title main-title"><div class="s-dot dark"></div> HABILIDADES</h3>
+                <div class="m-content" contenteditable="true" data-field="habilidades">{{ (doc.habilidades or 'Habilidades...') | safe }}</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

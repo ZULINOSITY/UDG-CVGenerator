@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="cv-container cv-estetico">
+        <div class="header">
+            <div class="header-left">
+                <h1 class="name" contenteditable="true" data-field="nombre">{{ (doc.nombre_completo or 'DIEGO') | safe }}</h1>
+                <h2 class="job" contenteditable="true" data-field="profesion">{{ (doc.profesion or 'CALENTADOR DE SILLA') | safe }}</h2>
+            </div>
+            <div class="contact">
+                <div contenteditable="true" data-field="telefono">{{ (doc.telefono or '1234-5678') | safe }}</div>
+                <div contenteditable="true" data-field="email">{{ (doc.email or 'mencho@ejemplo.com') | safe }}</div>
+            </div>
+        </div>
+
+        <hr class="divider">
+
+        <div class="content">
+            <div class="row">
+                <div class="section-title">Sobre Mí</div>
+                <div class="section-content" contenteditable="true" data-field="perfil">{{ doc.perfil | safe }}</div>
+            </div>
+            <div class="row">
+                <div class="section-title">Experiencia</div>
+                <div class="section-content" contenteditable="true" data-field="experiencia">{{ doc.experiencia | safe }}</div>
+            </div>
+            <div class="row">
+                <div class="section-title">Educación</div>
+                <div class="section-content" contenteditable="true" data-field="educacion">{{ doc.educacion | safe }}</div>
+            </div>
+            <div class="row">
+                <div class="section-title">Habilidades</div>
+                <div class="section-content" contenteditable="true" data-field="habilidades">{{ doc.habilidades | safe }}</div>
+            </div>
+            <div class="row">
+                <div class="section-title">Idiomas</div>
+                <div class="section-content" contenteditable="true" data-field="idiomas">{{ doc.idiomas | safe }}</div>
+            </div>
+            <div class="row">
+                <div class="section-title">Referencias</div>
+                <div class="section-content" contenteditable="true" data-field="referencias">{{ doc.referencias | safe }}</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

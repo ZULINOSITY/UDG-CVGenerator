@@ -1,0 +1,5 @@
+Flask
+pymongo
+certifi
+python-dotenv
+weasyprint

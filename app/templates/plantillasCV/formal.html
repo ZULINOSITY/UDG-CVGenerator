@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="cv-container cv-formal">
+        <div class="sidebar">
+            <div class="photo">{% if doc.foto %}<img src="{{ doc.foto }}" class="photo-preview">{% else %}FOTO{% endif %}</div>
+            <h1 class="name" contenteditable="true" data-field="nombre">{{ (doc.nombre_completo or 'NOMBRE') | safe }}</h1>
+            <div class="job" contenteditable="true" data-field="profesion">{{ (doc.profesion or 'PROFESIÓN') | safe }}</div>
+            <div class="section-title mt-2">Contacto</div>
+            <div class="contact-info" contenteditable="true" data-field="telefono">Tel: {{ (doc.telefono or '1234-5678') | safe }}</div>
+            <div class="contact-info" contenteditable="true" data-field="email">Email: {{ (doc.email or 'email@ejemplo.com') | safe }}</div>
+            <div class="section-title mt-2">Sobre Mí</div>
+            <div class="section-content" contenteditable="true" data-field="perfil">{{ (doc.perfil or 'Descripción...') | safe }}</div>
+            <div class="section-title mt-2">Referencias</div>
+            <div class="section-content" contenteditable="true" data-field="referencias">{{ (doc.referencias or 'Referencias...') | safe }}</div>
+        </div>
+        <div class="main">
+            <div class="section-title">Experiencia</div>
+            <div class="section-content" contenteditable="true" data-field="experiencia">{{ (doc.experiencia or 'Experiencia...') | safe }}</div>
+            <div class="section-title mt-2">Educación</div>
+            <div class="section-content" contenteditable="true" data-field="educacion">{{ (doc.educacion or 'Educación...') | safe }}</div>
+            <div class="section-title mt-2">Habilidades</div>
+            <div class="section-content" contenteditable="true" data-field="habilidades">{{ (doc.habilidades or 'Habilidades...') | safe }}</div>
+            <div class="section-title mt-2">Idiomas</div>
+            <div class="section-content" contenteditable="true" data-field="idiomas">{{ (doc.idiomas or 'Idiomas...') | safe }}</div>
+        </div>
+    </div>
+</body>
+</html>

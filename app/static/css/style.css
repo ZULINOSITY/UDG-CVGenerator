@@ -1,0 +1,15 @@
+/* =========================================
+   STYLE.CSS - IMPORTADOR PRINCIPAL
+========================================= */
+@import url('general/variables.css');
+@import url('general/components.css');
+@import url('general/layouts.css');
+@import url('general/editor.css');
+@import url('general/templates.css');
+@import url('general/print.css');
+@import url('plantillas/estetico.css');
+@import url('plantillas/harvard.css');
+@import url('plantillas/convencional.css');
+@import url('plantillas/decorada.css');
+@import url('plantillas/formal.css');
+

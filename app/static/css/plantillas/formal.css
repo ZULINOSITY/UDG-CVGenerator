@@ -1,0 +1,71 @@
+/* PLANTILLA FORMAL */
+.cv-formal {
+    display: flex;
+    position: relative;
+    min-height: 297mm;
+    font-family: Arial, Helvetica, sans-serif;
+    background: white;
+}
+
+/* Columna izquierda más ancha */
+.cv-formal .sidebar {
+    width: 38%;
+    padding: 3rem 2rem;
+    border-right: 2px solid #d1d5db;
+    background: #f9fafb;
+}
+
+.cv-formal .main {
+    width: 62%;
+    padding: 3rem 2rem;
+}
+
+.cv-formal .photo {
+    width: 140px;
+    height: 140px;
+    border-radius: 5px;
+    background: #e5e7eb;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+.cv-formal .name {
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+    line-height: 1.1;
+}
+
+.cv-formal .contact-info {
+    font-size: 0.9rem;
+    color: #4b5563;
+    margin-bottom: 0.5rem;
+}
+
+.cv-formal .mt-2 {
+    margin-top: 2rem;
+}
+
+.cv-formal .section-title {
+    font-size: 1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.8rem;
+    color: #111827;
+    border-bottom: 1px solid #d1d5db;
+    padding-bottom: 0.2rem;
+}
+
+.cv-formal .section-content {
+    font-size: 0.95rem;
+    color: #374151;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    text-align: justify;
+}

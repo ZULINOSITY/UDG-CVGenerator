@@ -1,0 +1,99 @@
+/* PLANTILLA CONVENCIONAL */
+.cv-convencional {
+    display: flex;
+    position: relative;
+    min-height: 297mm;
+}
+
+.cv-convencional .sidebar {
+    width: 34%;
+    background: #d7c7b7;
+    padding: 13.5rem 2.3rem 3rem;
+    position: relative;
+}
+
+.cv-convencional .photo {
+    position: absolute;
+    top: 3rem;
+    left: 2.5rem;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #9ca3af;
+    border: 6px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: white;
+}
+
+.cv-convencional .sidebar-section {
+    margin-top: 1.2rem;
+}
+
+.cv-convencional .s-title {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .85rem;
+    letter-spacing: 2px;
+    font-weight: 800;
+    margin-bottom: 1rem;
+}
+
+.cv-convencional .s-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+.cv-convencional .main {
+    width: 66%;
+    padding: 5rem 3rem;
+}
+
+.cv-convencional .header {
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+}
+
+.cv-convencional .name {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.cv-convencional .job {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #6b7280;
+}
+
+.cv-convencional .main-section {
+    margin-bottom: 2rem;
+}
+
+.cv-convencional .m-content {
+    border-left: 1px solid #d1d5db;
+    padding-left: 1rem;
+    margin-left: 4px;
+    line-height: 1.8;
+    color: #374151;
+    font-size: .95rem;
+    text-align: justify;
+    white-space: pre-line;
+}
+
+.cv-convencional .s-content {
+    border-left: 1px solid #6b7280;
+    padding-left: 1rem;
+    margin-left: 3px;
+    line-height: 1.8;
+    font-size: .95rem;
+    white-space: pre-line;
+}

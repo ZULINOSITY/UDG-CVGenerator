@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="cv-container cv-decorada">
+        <div class="sidebar">
+            <div class="sidebar-top">
+                <div class="photo">{% if doc.foto %}<img src="{{ doc.foto }}" class="photo-preview">{% else %}FOTO{% endif %}</div>
+            </div>
+            <div class="sidebar-content">
+                <h1 class="name" contenteditable="true" data-field="nombre">{{ (doc.nombre_completo or 'NOMBRE APELLIDO') | safe }}</h1>
+                <h2 class="job" contenteditable="true" data-field="profesion">{{ (doc.profesion or 'PROFESIÓN / CARGO') | safe }}</h2>
+                <div class="section-title mt-2">Sobre Mí</div>
+                <div class="section-content" contenteditable="true" data-field="perfil">{{ (doc.perfil or 'Breve resumen profesional...') | safe }}</div>
+                <div class="section-title mt-2">Contacto</div>
+                <div class="section-content" contenteditable="true" data-field="telefono">{{ (doc.telefono or 'Tel: 1234-5678') | safe }}</div>
+                <div class="section-content" contenteditable="true" data-field="email">{{ (doc.email or 'Email: ejemplo@correo.com') | safe }}</div>
+                <div class="section-title mt-2">Referencias</div>
+                <div class="section-content" contenteditable="true" data-field="referencias">{{ (doc.referencias or 'Disponibles bajo solicitud.') | safe }}</div>
+            </div>
+        </div>
+        <div class="main">
+            <div class="section-title">Experiencia Laboral</div>
+            <div class="section-content" contenteditable="true" data-field="experiencia">{{ (doc.experiencia or 'Describe tu trayectoria...') | safe }}</div>
+            <div class="section-title mt-2">Educación</div>
+            <div class="section-content" contenteditable="true" data-field="educacion">{{ (doc.educacion or 'Detalla tu formación...') | safe }}</div>
+            <div class="section-title mt-2">Habilidades</div>
+            <div class="section-content" contenteditable="true" data-field="habilidades">{{ (doc.habilidades or 'Listado de aptitudes...') | safe }}</div>
+            <div class="section-title mt-2">Idiomas</div>
+            <div class="section-content" contenteditable="true" data-field="idiomas">{{ (doc.idiomas or 'Nivel de idiomas...') | safe }}</div>
+        </div>
+    </div>
+</body>
+</html>
