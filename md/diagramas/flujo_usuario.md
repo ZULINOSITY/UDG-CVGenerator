@@ -1,5 +1,26 @@
 # Flujo del usuario
 
+```mermaid
+flowchart TD
+	A[Usuario entra a /] --> B{Hay usuario_id en sesion?}
+	B -- Si --> C[/dashboard/]
+	B -- No --> D[inicio.html]
+
+	D --> E[/login/]
+	D --> F[/register/]
+
+	F --> G[Crear usuario en MongoDB]
+	G --> E
+
+	E --> H{Credenciales validas?}
+	H -- Si --> C
+	H -- No --> E
+
+	C --> I[nuevo_cv / editar_cv]
+	I --> J[Guardar o actualizar documento]
+	J --> K[ver_cv / descargar_pdf / eliminar_cv]
+```
+
 ## Inicio
 
 1. El usuario entra a `/`.
