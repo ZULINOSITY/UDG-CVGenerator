@@ -41,7 +41,7 @@
 }
 
 .cv-decorada .name {
-    font-size: 1.6rem;
+    font-size: 1.25rem;
     font-weight: 800;
     color: #1e293b;
     margin-top: 1rem;
@@ -80,4 +80,45 @@
 .cv-decorada .main {
     width: 65%;
     padding: 3rem;
+}
+
+@media (max-width: 768px) {
+
+    .cv-decorada {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .cv-decorada .sidebar,
+    .cv-decorada .main {
+        width: 100%;
+    }
+
+    .cv-decorada .sidebar-top {
+        height: 120px;
+    }
+
+    .cv-decorada .photo {
+        width: 100px;
+        height: 100px;
+        bottom: -50px;
+    }
+
+    .cv-decorada .sidebar-content {
+        padding: 4rem 1.5rem 1.5rem;
+        text-align: center;
+    }
+
+    .cv-decorada .main {
+        padding: 2rem 1.5rem;
+    }
+
+    .cv-decorada .name {
+        font-size: 1.1rem;
+    }
+
+    .cv-decorada .job,
+    .cv-decorada .section-content {
+        font-size: 0.85rem;
+    }
 }
