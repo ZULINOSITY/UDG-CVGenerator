@@ -16,3 +16,11 @@ Esta carpeta concentra una guia corta y viva sobre como funciona la aplicacion y
 - CRUD de documentos CV.
 - Plantillas HTML/CSS y exportacion a PDF.
 - Pautas para agregar o cambiar funciones sin romper el proyecto.
+
+## Contribuidores
+
+- Erick Giovanni [Ryuuzus](https://github.com/Ryuuzus).
+- Octavio Castillon [OKtavil](https://github.com/OKtavil).
+- Nathanael Hernandez [nathah3rnandez-dotcom](https://github.com/nathah3rnandez-dotcom).
+- Ruben Palomera [runebenhook](https://github.com/runebenhook).
+- Roberto Escobar [ZULINOSITY](https://github.com/ZULINOSITY).
