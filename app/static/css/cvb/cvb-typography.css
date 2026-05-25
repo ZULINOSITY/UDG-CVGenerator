@@ -181,6 +181,11 @@
   background-clip: text;
 }
 
+.cvb-heading-xs {
+  font-size: 1.25rem;
+  margin-bottom: 16px;
+}
+
 .cvb-heading-lg {
   font-size: 2rem;
   margin-bottom: 32px;

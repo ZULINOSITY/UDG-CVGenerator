@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="editor-layout">
-    <div class="editor-sidebar">
+<div class="editor-layout" style="padding: 100px 0px 80px;">
+    <div class="editor-sidebar cvb-anim-slide-left">
         <div class="editor-toolbar">
             <div>
-                <label class="toolbar-label">Elegir Diseño Final:</label>
+                <label class="cvb-heading cvb-heading-xs">Elegir Diseño Final:</label>
                 <select id="select_plantilla" class="form-control toolbar-select">
                     <option value="estetico" {% if doc.plantilla == 'estetico' %}selected{% endif %}>Estetico</option>
                     <option value="convencional" {% if doc.plantilla == 'convencional' %}selected{% endif %}>Convencional</option>
@@ -15,20 +15,20 @@
                 </select>
             </div>
             <div class="toolbar-actions">
-                <button onclick="guardarDocumento()" class="btn btn-gradient btn-block">Guardar Documento</button>
-                <a href="{{ url_for('core.dashboard') }}" class="btn btn-light btn-block" style="text-align: center;">Cancelar</a>
+                <button onclick="guardarDocumento()" class="cvb-btn cvb-btn--sm">Guardar Documento</button>
+                <a href="{{ url_for('core.dashboard') }}" class="cvb-btn cvb-btn--light cvb-btn--sm" style="text-align: center;">Cancelar</a>
             </div>
         </div>
-        <div class="photo-upload-container">
-            <label class="photo-upload-label" style="color: white; font-weight: bold; margin-bottom: 0.5rem; display: block;">Subir Foto:</label>
+        <div class="editor-toolbar" style="gap: 0;">
+            <label class="cvb-heading cvb-heading-xs">Subir Foto:</label>
             <input type="file" id="inputFoto" accept="image/*" class="form-control" onchange="previsualizarFoto(event)">
         </div>
-        <div class="editor-info">
+        <div class="editor-info" style="background: var(--cvb-surface-nav); font-family: var(--cvb-font-display); font-weight: 500;">
             Haz clic sobre cualquier texto para editarlo. Los cambios se sincronizan automáticamente entre todas las plantillas.
         </div>
     </div>
 
-    <div class="editor-main">
+    <div class="editor-main cvb-anim-slide-right">
         <div id="editor-canvases">
             <div id="tpl_estetico" class="cv-preview-wrapper" style="display:none;">{% include 'plantillasCV/estetico.html' %}</div>
             <div id="tpl_convencional" class="cv-preview-wrapper" style="display:none;">{% include 'plantillasCV/convencional.html' %}</div>
