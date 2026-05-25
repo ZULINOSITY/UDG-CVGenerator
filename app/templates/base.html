@@ -5,11 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV Builder</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/cvb.css') }}">
 </head>
 <body>
     
     <nav class="navbar">
-        <a href="{{ url_for('core.index') }}" class="logo">CV Builder</a>
+        <a href="{{ url_for('core.index') }}" class="logo cvb-card__btn">CV Builder</a>
         
         <div class="nav-links">
             {% if session.get('usuario_id') %}
