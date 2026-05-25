@@ -1,0 +1,90 @@
+/* ============================================================
+   CVB — cvb-tokens.css  |  Design Tokens
+   Variables globales del sistema de diseño.
+   Importa este archivo primero en todos tus HTML.
+   ============================================================
+
+   CÓMO USAR
+   ──────────────────────────────────────────────────────────
+   <link rel="stylesheet" href="css/cvb-tokens.css">
+
+   Para sobreescribir cualquier token en una página concreta:
+   <style>
+     :root { --cvb-accent-start: #06b6d4; }
+   </style>
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
+
+:root {
+
+  /* ── Colores de fondo ───────────────────────────────────── */
+  --cvb-bg-top:            #06060c;
+  --cvb-bg-mid:            #0e0d1f;
+  --cvb-bg-bottom:         #12103a;
+
+  /* ── Acento principal (gradiente púrpura→magenta) ───────── */
+  --cvb-accent-start:      #8b5cf6;   /* violeta */
+  --cvb-accent-mid:        #a855f7;   /* púrpura */
+  --cvb-accent-end:        #d946ef;   /* magenta */
+
+  /* ── Texto ──────────────────────────────────────────────── */
+  --cvb-text-primary:      #f0eeff;
+  --cvb-text-muted:        rgba(200, 190, 255, 0.55);
+
+  /* ── Superficies (glass / frosted) ─────────────────────── */
+  --cvb-surface-nav:       rgba(45, 30, 75, 0.85);
+  --cvb-surface-card:      rgba(20, 16, 50, 0.6);
+  --cvb-surface-dropdown:  rgba(18, 12, 40, 0.97);
+  --cvb-surface-fab:       rgba(100, 60, 180, 0.75);
+
+  /* ── Bordes ─────────────────────────────────────────────── */
+  --cvb-border-nav:        rgba(139, 92, 246, 0.25);
+  --cvb-border-card:       rgba(139, 92, 246, 0.2);
+  --cvb-border-dropdown:   rgba(139, 92, 246, 0.3);
+
+  /* ── Sombras / glow ─────────────────────────────────────── */
+  --cvb-glow-card:         rgba(139, 92, 246, 0.15);
+  --cvb-glow-fab:          rgba(100, 60, 200, 0.4);
+
+  /* ── Logo ───────────────────────────────────────────────── */
+  --cvb-logo-bg:           #ffffff;
+  --cvb-logo-text:         #0e0d1f;
+
+  /* ── Radios ─────────────────────────────────────────────── */
+  --cvb-radius-pill:       999px;
+  --cvb-radius-card:       20px;
+  --cvb-radius-md:         14px;
+  --cvb-radius-sm:         10px;
+
+  /* ── Tipografías ────────────────────────────────────────── */
+  --cvb-font-display:      'Sora', sans-serif;
+  --cvb-font-body:         'DM Sans', sans-serif;
+
+  /* ── Tamaños de fuente (escala fluida) ──────────────────── */
+  --cvb-text-xs:           0.82rem;
+  --cvb-text-sm:           0.9rem;
+  --cvb-text-base:         0.95rem;
+  --cvb-text-lg:           1.1rem;
+  --cvb-text-xl:           1.3rem;
+  --cvb-text-hero:         clamp(2rem, 5vw, 3.2rem);
+  --cvb-text-tagline:      clamp(1rem, 2.5vw, 1.2rem);
+
+  /* ── Espaciado ──────────────────────────────────────────── */
+  --cvb-space-xs:          4px;
+  --cvb-space-sm:          8px;
+  --cvb-space-md:          16px;
+  --cvb-space-lg:          28px;
+  --cvb-space-xl:          48px;
+  --cvb-space-2xl:         80px;
+
+  /* ── Transición estándar ────────────────────────────────── */
+  --cvb-transition:        all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  --cvb-transition-slow:   all 0.4s ease;
+  --cvb-transition-bounce: all 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── Z-index scale ──────────────────────────────────────── */
+  --cvb-z-fab:             90;
+  --cvb-z-header:          100;
+  --cvb-z-dropdown:        200;
+}

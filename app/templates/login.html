@@ -1,23 +1,23 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="auth-container">
-    <div class="card auth-card cvb-init__animation">
-        <h2 class="cvb-hero__title">Iniciar sesión</h2>
-
-        <form action="{{ url_for('auth.login') }}" method="POST">
+<div class="cvb-hero">
+    <div class="cvb-card-login cvb-anim-scale-in" style="width: 100%; max-width: 420px; padding: 48px 40px;">
+        <h2 class="cvb-heading cvb-anim-slide-down cvb-anim--d1 cvb-heading-lg">Iniciar sesión</h2>
+        <form action="{{ url_for('auth.login') }}" method="POST" style="width: 100%;">
             <div class="form-group">
-                <label>Correo electrónico</label>
-                <input type="email" name="correo" class="form-control" placeholder="correo@ejemplo.com" required>
+                <label class="cvb-subtagline cvb-anim-fade-up cvb-anim--d1">Correo electrónico</label>
+                <input type="email" name="correo" class="form-control cvb-anim-fade-up cvb-anim--d2" placeholder="correo@ejemplo.com" required>
             </div>
             <div class="form-group">
-                <label>Contraseña</label>
-                <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+                <label class="cvb-subtagline cvb-anim-fade-up cvb-anim--d3">Contraseña</label>
+                <input type="password" name="password" class="form-control cvb-anim-fade-up cvb-anim--d4" placeholder="••••••••" required>
             </div>
-            <button type="submit" class="btn cvb-card__btn btn-block">Entrar</button>
+            <button type="submit" class="cvb-btn cvb-btn--block cvb-btn--sm cvb-anim-fade-up cvb-anim--d5">
+                Entrar
+            </button>
         </form>
-
-        <div class="auth-footer">
+        <div class="auth-footer cvb-text-muted cvb-text-sm cvb-anim-fade-up cvb-anim--d6">
             ¿Aún no tienes cuenta? <a href="{{ url_for('auth.register') }}">Registrarme</a>
         </div>
     </div>

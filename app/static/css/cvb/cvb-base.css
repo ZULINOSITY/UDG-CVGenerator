@@ -1,0 +1,55 @@
+/* ============================================================
+   CVB — cvb-base.css  |  Reset & Base
+   Estilos mínimos que todo HTML del proyecto debe tener.
+   ============================================================
+
+   REQUIERE: cvb-tokens.css
+
+   CÓMO USAR
+   ──────────────────────────────────────────────────────────
+   <link rel="stylesheet" href="css/cvb-tokens.css">
+   <link rel="stylesheet" href="css/cvb-base.css">
+   ============================================================ */
+
+/* ── Reset ──────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── HTML ───────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Body ───────────────────────────────────────────────────── */
+body {
+  font-family: var(--cvb-font-body);
+  color: var(--cvb-text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+  line-height: 1.5;
+}
+
+/* ── Links ──────────────────────────────────────────────────── */
+a {
+  color: inherit;
+}
+
+/* ── Imágenes ───────────────────────────────────────────────── */
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* ── Botones nativos: quitar estilos del navegador ──────────── */
+button {
+  font: inherit;
+  cursor: pointer;
+  background: none;
+  border: none;
+}

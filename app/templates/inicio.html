@@ -9,15 +9,15 @@
 <body class="cvb-bg">
 
     <main class="cvb-hero">
-        <p class="cvb-hero__tagline">Crea tu CV en minutos</p>
-        <h1 class="cvb-hero__title cvb-init__animation">¿Por dónde quieres<br>empezar?</h1>
+        <p class="cvb-tagline cvb-anim-fade-up">Crea tu CV en minutos</p>
+        <h1 class="cvb-heading cvb-anim-fade-up cvb-anim--d1">¿Por dónde quieres<br>empezar?</h1>
 
-        <div class="cvb-grid">
-            <a href="{{ url_for('auth.login') }}" class="cvb-card">
-                <button class="cvb-card__btn">Comenzar</button>
+        <div class="cvb-grid cvb-anim-fade-up cvb-anim--d2">
+            <a href="{{ url_for('auth.login') }}" class="cvb-card-home">
+                <button class="cvb-btn">Comenzar</button>
             </a>
-            <a href="{{ url_for('auth.register') }}" class="cvb-card">
-                <button class="cvb-card__btn">Crear cuenta</button>
+            <a href="{{ url_for('auth.register') }}" class="cvb-card-home">
+                <button class="cvb-btn">Crear cuenta</button>
             </a>
         </div>
     </main>

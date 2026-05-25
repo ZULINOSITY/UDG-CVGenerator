@@ -1,0 +1,55 @@
+/* ============================================================
+   CVB — cvb-bg.css  |  Fondos
+   Capas de fondo: gradiente principal y ruido de textura.
+   ============================================================
+
+   REQUIERE: cvb-tokens.css
+
+   CÓMO USAR
+   ──────────────────────────────────────────────────────────
+   Añade .cvb-bg al <body> (o a cualquier contenedor raíz)
+   para activar el fondo completo con gradientes y ruido:
+
+   <body class="cvb-bg"> … </body>
+
+   También puedes usar solo el gradiente sin ruido:
+
+   <body class="cvb-bg-gradient"> … </body>
+
+   O solo el ruido sobre un fondo propio:
+
+   <div class="cvb-bg-noise"> … </div>
+   ============================================================ */
+
+
+/* ── Fondo completo (gradiente + ruido) ─────────────────────── */
+.cvb-bg::before,
+.cvb-bg-gradient::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(ellipse 80% 50% at 20% 100%, rgba(88,  28, 220, 0.22) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 80%  90%, rgba(180, 30, 210, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 100% 60% at 50%  0%, rgba(6,    4,  20, 0.98) 0%, transparent 70%),
+    linear-gradient(
+      175deg,
+      var(--cvb-bg-top)    0%,
+      var(--cvb-bg-mid)   45%,
+      var(--cvb-bg-bottom) 100%
+    );
+}
+
+/* ── Capa de ruido/textura sutil ────────────────────────────── */
+.cvb-bg::after,
+.cvb-bg-noise::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  pointer-events: none;
+}
