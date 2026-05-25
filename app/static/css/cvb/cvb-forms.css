@@ -1,0 +1,317 @@
+/* ============================================================
+   CVB — cvb-forms.css  |  Formularios
+   Select personalizado y file input drag-and-drop.
+   ============================================================
+
+   REQUIERE: cvb-tokens.css  cvb-base.css
+
+   ÍNDICE
+   ──────────────────────────────────────────────────────────
+   A.  Select  (.cvb-select-wrap)
+   B.  File input  (.cvb-file-wrap)
+   ============================================================ */
+
+
+/* ══════════════════════════════════════════════════════════════
+   A. SELECT
+   ══════════════════════════════════════════════════════════════
+   Envuelve el <select> nativo en .cvb-select-wrap para añadir
+   el estilo glass e ícono de chevron personalizado.
+
+   USO:
+   <div class="cvb-select-wrap">
+     <select id="mi-select" class="cvb-select">
+       <option value="a">Opción A</option>
+       <option value="b">Opción B</option>
+     </select>
+   </div>
+*/
+
+.cvb-select-wrap {
+  position: relative;
+  width: 100%;
+}
+
+/* Chevron SVG como pseudo-elemento — no depende de fuentes de iconos */
+.cvb-select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(200,190,255,0.6)' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: contain;
+  pointer-events: none;
+  transition: transform 0.25s ease;
+}
+
+.cvb-select {
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+
+  /* Glass surface */
+  background: var(--cvb-surface-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  /* Borde y forma */
+  border: 1px solid var(--cvb-border-card);
+  border-radius: var(--cvb-radius-md);
+  padding: 12px 44px 12px 16px;  /* derecha extra para el chevron */
+
+  /* Tipografía */
+  font-family: var(--cvb-font-display);
+  font-size: var(--cvb-text-base);
+  font-weight: 500;
+  color: var(--cvb-text-primary);
+  letter-spacing: -0.01em;
+
+  cursor: pointer;
+  transition: var(--cvb-transition);
+
+  /* Sombra suave */
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Color del panel de opciones (solo algunos navegadores) */
+.cvb-select option {
+  background: #1a1230;
+  color: var(--cvb-text-primary);
+  font-family: var(--cvb-font-body);
+  padding: 8px;
+}
+
+/* Focus */
+.cvb-select:focus {
+  outline: none;
+  border-color: var(--cvb-accent-mid);
+  box-shadow:
+    0 0 0 3px rgba(139, 92, 246, 0.2),
+    0 4px 20px rgba(0, 0, 0, 0.25);
+  background: rgba(30, 20, 65, 0.75);
+}
+
+/* Hover */
+.cvb-select:hover {
+  border-color: rgba(139, 92, 246, 0.45);
+  background: rgba(30, 20, 65, 0.65);
+}
+
+/* Gira el chevron cuando el select está activo/focus */
+.cvb-select:focus + .cvb-select-wrap::after,
+.cvb-select-wrap:focus-within::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   B. FILE INPUT — zona de arrastre
+   ══════════════════════════════════════════════════════════════
+   Reemplaza el input nativo con una zona visual de drag & drop.
+   El <input type="file"> queda oculto; el label actúa de trigger.
+
+   USO:
+   <div class="cvb-file-wrap" id="miFileWrap">
+     <input type="file" id="inputFoto" class="cvb-file-input"
+            accept="image/*" onchange="previsualizarFoto(event)">
+
+     <label for="inputFoto" class="cvb-file-label">
+       <div class="cvb-file-icon">
+         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round" stroke-linejoin="round">
+           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+           <polyline points="17 8 12 3 7 8"/>
+           <line x1="12" y1="3" x2="12" y2="15"/>
+         </svg>
+       </div>
+       <span class="cvb-file-text">Arrastra tu foto aquí</span>
+       <span class="cvb-file-subtext">o haz clic para elegir</span>
+       <span class="cvb-file-badge">JPG · PNG · WEBP</span>
+     </label>
+
+     <!-- Preview — se muestra con JS al seleccionar foto -->
+     <div class="cvb-file-preview" id="miFilePreview" style="display:none;">
+       <img id="miFileImg" src="" alt="Vista previa">
+       <button type="button" class="cvb-file-clear" onclick="limpiarFoto()">✕</button>
+     </div>
+   </div>
+
+   CLASES JS DINÁMICAS:
+   .cvb-file-wrap.dragover  → agrega cuando entra un archivo arrastrado
+   .cvb-file-wrap.has-file  → agrega cuando hay archivo seleccionado
+*/
+
+/* Contenedor principal */
+.cvb-file-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: var(--cvb-radius-md);
+  transition: var(--cvb-transition);
+}
+
+/* Input nativo — invisible, ocupa todo el área para accesibilidad */
+.cvb-file-input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+/* Label — zona visual de drop */
+.cvb-file-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 28px 20px;
+  border-radius: var(--cvb-radius-md);
+  border: 1.5px dashed var(--cvb-border-card);
+  background: var(--cvb-surface-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: var(--cvb-transition);
+  text-align: center;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.cvb-file-label:hover {
+  border-color: rgba(139, 92, 246, 0.55);
+  background: rgba(30, 20, 65, 0.65);
+  box-shadow:
+    0 0 0 3px rgba(139, 92, 246, 0.12),
+    0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Ícono SVG de upload */
+.cvb-file-icon {
+  width: 40px;
+  height: 40px;
+  color: var(--cvb-accent-mid);
+  opacity: 0.85;
+  margin-bottom: 4px;
+  transition: var(--cvb-transition);
+}
+
+.cvb-file-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.cvb-file-label:hover .cvb-file-icon {
+  opacity: 1;
+  transform: translateY(-3px);
+}
+
+/* Texto principal */
+.cvb-file-text {
+  font-family: var(--cvb-font-display);
+  font-size: var(--cvb-text-base);
+  font-weight: 500;
+  color: var(--cvb-text-primary);
+  letter-spacing: -0.01em;
+}
+
+/* Subtexto */
+.cvb-file-subtext {
+  font-family: var(--cvb-font-body);
+  font-size: var(--cvb-text-xs);
+  color: var(--cvb-text-muted);
+}
+
+/* Badge de formatos aceptados */
+.cvb-file-badge {
+  margin-top: 6px;
+  font-family: var(--cvb-font-display);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cvb-accent-mid);
+  background: rgba(139, 92, 246, 0.12);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: var(--cvb-radius-pill);
+  padding: 3px 12px;
+}
+
+/* ── Estado: arrastrando archivo ─────────────────────────────── */
+.cvb-file-wrap.dragover .cvb-file-label {
+  border-color: var(--cvb-accent-mid);
+  background: rgba(139, 92, 246, 0.1);
+  box-shadow:
+    0 0 0 4px rgba(139, 92, 246, 0.18),
+    0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.cvb-file-wrap.dragover .cvb-file-icon {
+  transform: translateY(-6px) scale(1.1);
+  color: var(--cvb-accent-end);
+}
+
+/* ── Estado: archivo seleccionado — oculta el label ─────────── */
+.cvb-file-wrap.has-file .cvb-file-label {
+  display: none;
+}
+
+.cvb-file-wrap.has-file .cvb-file-input {
+  display: none;
+}
+
+/* ── Preview de imagen seleccionada ─────────────────────────── */
+.cvb-file-preview {
+  position: relative;
+  width: 100%;
+  border-radius: var(--cvb-radius-md);
+  overflow: hidden;
+  border: 1px solid var(--cvb-border-card);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.cvb-file-preview img {
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--cvb-radius-md);
+}
+
+/* Botón para eliminar la foto seleccionada */
+.cvb-file-clear {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(220, 38, 38, 0.85);
+  border: none;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+  transition: var(--cvb-transition);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  z-index: 3;
+}
+
+.cvb-file-clear:hover {
+  background: #ef4444;
+  transform: scale(1.1);
+}
