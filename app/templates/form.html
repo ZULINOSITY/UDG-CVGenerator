@@ -1,58 +1,156 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="editor-layout">
-    <div class="editor-sidebar">
+<div class="editor-layout" style="padding: 100px 0px 80px;">
+
+    <div class="editor-sidebar cvb-anim-slide-left">
+
         <div class="editor-toolbar">
-            <div>
-                <label class="toolbar-label">Elegir Diseño Final:</label>
-                <select id="select_plantilla" class="form-control toolbar-select">
-                    <option value="estetico" {% if doc.plantilla == 'estetico' %}selected{% endif %}>Estetico</option>
-                    <option value="convencional" {% if doc.plantilla == 'convencional' %}selected{% endif %}>Convencional</option>
-                    <option value="harvard" {% if doc.plantilla == 'harvard' %}selected{% endif %}>Harvard</option>
-                    <option value="formal" {% if doc.plantilla == 'formal' %}selected{% endif %}>Formal</option>
-                    <option value="decorada" {% if doc.plantilla == 'decorada' %}selected{% endif %}>Decorada</option>
-                </select>
+            <!-- ── Select de plantilla ───────────────────────── -->
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label class="cvb-heading cvb-heading-xs" for="select_plantilla" style="text-align: center;">
+                    Elegir Diseño Final
+                </label>
+
+                <div class="cvb-select-wrap">
+                    <select id="select_plantilla" class="cvb-select">
+                        <option value="estetico"      {% if doc.plantilla == 'estetico'      %}selected{% endif %}>✦ Estético</option>
+                        <option value="convencional"  {% if doc.plantilla == 'convencional'  %}selected{% endif %}>◈ Convencional</option>
+                        <option value="harvard"       {% if doc.plantilla == 'harvard'       %}selected{% endif %}>◉ Harvard</option>
+                        <option value="formal"        {% if doc.plantilla == 'formal'        %}selected{% endif %}>▣ Formal</option>
+                        <option value="decorada"      {% if doc.plantilla == 'decorada'      %}selected{% endif %}>❋ Decorada</option>
+                    </select>
+                </div>
             </div>
+
+            <!-- ── Acciones ──────────────────────────────────── -->
             <div class="toolbar-actions">
-                <button onclick="guardarDocumento()" class="btn btn-gradient btn-block">Guardar Documento</button>
-                <a href="{{ url_for('core.dashboard') }}" class="btn btn-light btn-block" style="text-align: center;">Cancelar</a>
+                <button onclick="guardarDocumento()" class="cvb-btn cvb-btn--sm">
+                    Guardar Documento
+                </button>
+                <a href="{{ url_for('core.dashboard') }}" class="cvb-btn cvb-btn--light cvb-btn--sm" style="text-align: center;">
+                    Cancelar
+                </a>
             </div>
         </div>
-        <div class="photo-upload-container">
-            <label class="photo-upload-label" style="color: white; font-weight: bold; margin-bottom: 0.5rem; display: block;">Subir Foto:</label>
-            <input type="file" id="inputFoto" accept="image/*" class="form-control" onchange="previsualizarFoto(event)">
+
+        <!-- ── File input ────────────────────────────────────── -->
+        <div class="editor-toolbar" style="gap: 8px;">
+            <label class="cvb-heading cvb-heading-xs">Foto de Perfil</label>
+
+            <div class="cvb-file-wrap" id="fotoWrap">
+
+                <!-- Input nativo oculto -->
+                <input
+                    type="file"
+                    id="inputFoto"
+                    class="cvb-file-input"
+                    accept="image/*"
+                    onchange="previsualizarFoto(event)"
+                >
+
+                <!-- Zona visual de arrastre -->
+                <label for="inputFoto" class="cvb-file-label">
+                    <div class="cvb-file-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                             fill="none" stroke="currentColor" stroke-width="1.5"
+                             stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="4" ry="4"/>
+                            <circle cx="12" cy="10" r="3"/>
+                            <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+                        </svg>
+                    </div>
+                    <span class="cvb-file-text">Arrastra tu foto aquí</span>
+                    <span class="cvb-file-subtext">o haz clic para elegir</span>
+                    <span class="cvb-file-badge">JPG · PNG · WEBP</span>
+                </label>
+
+                <!-- Preview (visible tras seleccionar) -->
+                <div class="cvb-file-preview" id="fotoPreview" style="display: none;">
+                    <img id="fotoImg" src="" alt="Vista previa">
+                    <button type="button" class="cvb-file-clear" onclick="limpiarFoto()">✕</button>
+                </div>
+
+            </div>
         </div>
-        <div class="editor-info">
+
+        <!-- ── Tip de edición ─────────────────────────────────── -->
+        <div class="editor-info" style="background: var(--cvb-surface-nav); font-family: var(--cvb-font-display); font-weight: 500;">
             Haz clic sobre cualquier texto para editarlo. Los cambios se sincronizan automáticamente entre todas las plantillas.
         </div>
+
     </div>
 
-    <div class="editor-main">
+    <!-- ── Canvas del editor ─────────────────────────────────── -->
+    <div class="editor-main cvb-anim-slide-right">
         <div id="editor-canvases">
-            <div id="tpl_estetico" class="cv-preview-wrapper" style="display:none;">{% include 'plantillasCV/estetico.html' %}</div>
+            <div id="tpl_estetico"     class="cv-preview-wrapper" style="display:none;">{% include 'plantillasCV/estetico.html' %}</div>
             <div id="tpl_convencional" class="cv-preview-wrapper" style="display:none;">{% include 'plantillasCV/convencional.html' %}</div>
-            <div id="tpl_harvard" class="cv-preview-wrapper" style="display:none;">{% include 'plantillasCV/harvard.html' %}</div>
-            <div id="tpl_formal" class="cv-preview-wrapper" style="display:none;">{% include 'plantillasCV/formal.html' %}</div>
-            <div id="tpl_decorada" class="cv-preview-wrapper" style="display:none;">{% include 'plantillasCV/decorada.html' %}</div>
+            <div id="tpl_harvard"      class="cv-preview-wrapper" style="display:none;">{% include 'plantillasCV/harvard.html' %}</div>
+            <div id="tpl_formal"       class="cv-preview-wrapper" style="display:none;">{% include 'plantillasCV/formal.html' %}</div>
+            <div id="tpl_decorada"     class="cv-preview-wrapper" style="display:none;">{% include 'plantillasCV/decorada.html' %}</div>
         </div>
     </div>
 </div>
 
+<!-- ── Formulario oculto de guardado ─────────────────────────── -->
 <form action="" method="POST" id="formGuardar" style="display:none;">
-    <input type="hidden" name="plantilla" id="hidden_plantilla">
+    <input type="hidden" name="plantilla"      id="hidden_plantilla">
     <input type="hidden" name="nombreCompleto" id="hidden_nombre">
-    <input type="hidden" name="profesion" id="hidden_profesion">
-    <input type="hidden" name="telefono" id="hidden_telefono">
-    <input type="hidden" name="email" id="hidden_email">
-    <input type="hidden" name="perfil" id="hidden_perfil">
-    <input type="hidden" name="experiencia" id="hidden_experiencia">
-    <input type="hidden" name="educacion" id="hidden_educacion">
-    <input type="hidden" name="habilidades" id="hidden_habilidades">
-    <input type="hidden" name="idiomas" id="hidden_idiomas">
-    <input type="hidden" name="referencias" id="hidden_referencias">
-    <input type="hidden" name="foto" id="hidden_foto">
+    <input type="hidden" name="profesion"      id="hidden_profesion">
+    <input type="hidden" name="telefono"       id="hidden_telefono">
+    <input type="hidden" name="email"          id="hidden_email">
+    <input type="hidden" name="perfil"         id="hidden_perfil">
+    <input type="hidden" name="experiencia"    id="hidden_experiencia">
+    <input type="hidden" name="educacion"      id="hidden_educacion">
+    <input type="hidden" name="habilidades"    id="hidden_habilidades">
+    <input type="hidden" name="idiomas"        id="hidden_idiomas">
+    <input type="hidden" name="referencias"    id="hidden_referencias">
+    <input type="hidden" name="foto"           id="hidden_foto">
 </form>
+
+<script>
+/* ── Drag & drop para .cvb-file-wrap ──────────────────────── */
+(function () {
+    const wrap = document.getElementById('fotoWrap');
+    if (!wrap) return;
+
+    wrap.addEventListener('dragover', e => {
+        e.preventDefault();
+        wrap.classList.add('dragover');
+    });
+
+    ['dragleave', 'dragend', 'drop'].forEach(evt =>
+        wrap.addEventListener(evt, () => wrap.classList.remove('dragover'))
+    );
+
+    wrap.addEventListener('drop', e => {
+        e.preventDefault();
+        const file = e.dataTransfer?.files?.[0];
+        if (file && file.type.startsWith('image/')) {
+            // Reutiliza previsualizarFoto si ya existe en form.js
+            const input = document.getElementById('inputFoto');
+            const dt = new DataTransfer();
+            dt.items.add(file);
+            input.files = dt.files;
+            previsualizarFoto({ target: input });
+        }
+    });
+})();
+
+/* ── Limpia la foto seleccionada ──────────────────────────── */
+function limpiarFoto() {
+    const wrap    = document.getElementById('fotoWrap');
+    const preview = document.getElementById('fotoPreview');
+    const img     = document.getElementById('fotoImg');
+    const input   = document.getElementById('inputFoto');
+
+    img.src = '';
+    input.value = '';
+    preview.style.display = 'none';
+    wrap.classList.remove('has-file');
+}
+</script>
 
 <script src="{{ url_for('static', filename='js/form.js') }}"></script>
 {% endblock %}

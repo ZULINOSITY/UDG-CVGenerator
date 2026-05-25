@@ -1,0 +1,192 @@
+/* ============================================================
+   CVB — cvb-typography.css  |  Tipografía
+   Clases de utilidad para fuentes, tamaños, pesos y colores
+   de texto. Úsalas solas o combínalas entre sí.
+   ============================================================
+
+   REQUIERE: cvb-tokens.css
+
+   CÓMO USAR — ejemplos rápidos
+   ──────────────────────────────────────────────────────────
+   <p class="cvb-font-display">Sora</p>
+   <p class="cvb-font-body">DM Sans</p>
+
+   <h1 class="cvb-text-hero cvb-text-gradient">Título grande</h1>
+   <p  class="cvb-text-sm cvb-text-muted">Nota al pie</p>
+
+   <p class="cvb-font-light">Ligero</p>
+   <p class="cvb-font-medium">Medio</p>
+   <p class="cvb-font-bold">Negrita</p>
+
+   <p class="cvb-tracking-wide cvb-uppercase">ETIQUETA</p>
+   ============================================================ */
+
+/* ── Familia tipográfica ─────────────────────────────────────── */
+.cvb-font-display {
+  font-family: var(--cvb-font-display);
+}
+.cvb-font-body {
+  font-family: var(--cvb-font-body);
+}
+
+/* ── Tamaños de texto ───────────────────────────────────────── */
+.cvb-text-xs {
+  font-size: var(--cvb-text-xs);
+} /* 0.82rem */
+.cvb-text-sm {
+  font-size: var(--cvb-text-sm);
+} /* 0.9rem  */
+.cvb-text-base {
+  font-size: var(--cvb-text-base);
+} /* 0.95rem */
+.cvb-text-lg {
+  font-size: var(--cvb-text-lg);
+} /* 1.1rem  */
+.cvb-text-xl {
+  font-size: var(--cvb-text-xl);
+} /* 1.3rem  */
+.cvb-text-hero {
+  font-size: var(--cvb-text-hero);
+} /* fluido 2–3.2rem */
+.cvb-text-tagline {
+  font-size: var(--cvb-text-tagline);
+} /* fluido 1–1.2rem */
+
+/* ── Pesos ──────────────────────────────────────────────────── */
+.cvb-font-light {
+  font-weight: 300;
+}
+.cvb-font-regular {
+  font-weight: 400;
+}
+.cvb-font-medium {
+  font-weight: 500;
+}
+.cvb-font-semibold {
+  font-weight: 600;
+}
+.cvb-font-bold {
+  font-weight: 700;
+}
+
+/* ── Colores de texto ───────────────────────────────────────── */
+.cvb-text-primary {
+  color: var(--cvb-text-primary);
+}
+.cvb-text-muted {
+  color: var(--cvb-text-muted);
+}
+.cvb-text-white {
+  color: #fff;
+}
+.cvb-text-accent {
+  color: var(--cvb-accent-mid);
+}
+
+/* ── Texto con gradiente acento ─────────────────────────────── */
+/*
+   Aplica un gradiente blanco → lila sobre el texto.
+   Úsalo en títulos y encabezados de secciones hero.
+*/
+.cvb-text-gradient {
+  background: linear-gradient(135deg, #fff 30%, rgba(200, 160, 255, 0.8) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Alineación ─────────────────────────────────────────────── */
+.cvb-text-left {
+  text-align: left;
+}
+.cvb-text-center {
+  text-align: center;
+}
+.cvb-text-right {
+  text-align: right;
+}
+
+/* ── Transformaciones ───────────────────────────────────────── */
+.cvb-uppercase {
+  text-transform: uppercase;
+}
+.cvb-lowercase {
+  text-transform: lowercase;
+}
+.cvb-capitalize {
+  text-transform: capitalize;
+}
+
+/* ── Espaciado de letras ────────────────────────────────────── */
+.cvb-tracking-tight {
+  letter-spacing: -0.04em;
+}
+.cvb-tracking-normal {
+  letter-spacing: -0.02em;
+}
+.cvb-tracking-wide {
+  letter-spacing: 0.08em;
+}
+
+/* ── Altura de línea ────────────────────────────────────────── */
+.cvb-leading-tight {
+  line-height: 1.1;
+}
+.cvb-leading-normal {
+  line-height: 1.5;
+}
+.cvb-leading-loose {
+  line-height: 1.8;
+}
+
+/* ── Patrones compuestos (atajos de uso frecuente) ──────────── */
+
+/*
+   Etiqueta pequeña en mayúsculas (ej: "Crea tu CV en minutos")
+   Uso: <p class="cvb-tagline">…</p>
+*/
+.cvb-tagline {
+  font-family: var(--cvb-font-display);
+  font-size: var(--cvb-text-tagline);
+  font-weight: 300;
+  color: var(--cvb-text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.cvb-subtagline {
+  font-family: var(--cvb-font-display);
+  font-size: clamp(1rem, 2rem);;
+  color: var(--cvb-text-muted);
+  letter-spacing: 0.08em;
+  font-weight: 300;
+}
+
+/*
+   Título hero grande con gradiente.
+   Uso: <h1 class="cvb-heading">…</h1>
+*/
+.cvb-heading {
+  font-family: var(--cvb-font-display);
+  font-size: var(--cvb-text-hero);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  text-align: center;
+  background: linear-gradient(135deg, #fff 30%, rgba(200, 160, 255, 0.8) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cvb-heading-xs {
+  font-size: 1.25rem;
+  margin-bottom: 16px;
+}
+
+.cvb-heading-lg {
+  font-size: 2rem;
+  margin-bottom: 32px;
+}

@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div>
-    <div class="dashboard-header">
-        <h2 class="card-title text-gradient" style="margin-bottom:0;">Tus Documentos</h2>
-        <a href="{{ url_for('cv.nuevo_cv') }}" class="btn btn-light">+ Nuevo Documento</a>
+<div class="cvb-section">
+    <div class="cvb-subhero">
+        <span class="cvb-tagline cvb-anim-fade-up">Hola, {{ session.get('nombre') }}!</span>
+        <h2 class="cvb-heading cvb-anim-fade-up cvb-anim--d1" style="margin-bottom:0;">Tus Documentos</h2>
     </div>
 
     <div class="grid-layout">
         {% if documentos %}
             {% for doc in documentos %}
-            <div class="card dashboard-card">
+            <div class="card dashboard-card cvb-anim-fade-up cvb-anim--d2">
                 <div class="dashboard-preview">
                     <span class="dashboard-template">
                         Plantilla: 
@@ -19,23 +19,23 @@
                         {% elif doc.plantilla == 'harvard' %}Harvard
                         {% else %}{{ doc.plantilla | title }}{% endif %}
                     </span>
-                    <a href="{{ url_for('cv.ver_cv', id_doc=doc._id) }}" target="_blank" class="btn btn-gradient" style="flex:1; text-align:center;">Ver</a>
-                    <a href="{{ url_for('cv.descargar_pdf', id_doc=doc._id) }}" target="_blank" class="btn btn-light" style="flex:1; text-align:center;">PDF</a>
+                    <a href="{{ url_for('cv.ver_cv', id_doc=doc._id) }}" target="_blank" class="cvb-btn--ghost cvb-btn--sm" style="flex:1; text-align:center;">Ver</a>
+                    <a href="{{ url_for('cv.descargar_pdf', id_doc=doc._id) }}" target="_blank" class="cvb-btn cvb-btn--sm" style="flex:1; text-align:center;">PDF</a>
                 </div>
                 <div class="dashboard-info">
                     <h3 class="dashboard-name">{{ doc.nombre_completo | safe }}</h3>
                     <p class="dashboard-job">{{ doc.profesion | safe }}</p>
                     <div class="dashboard-actions">
-                        <a href="{{ url_for('cv.editar_cv', id_doc=doc._id) }}" class="btn btn-light dashboard-action-btn">Editar</a>
+                        <a href="{{ url_for('cv.editar_cv', id_doc=doc._id) }}" class="cvb-btn cvb-btn--light cvb-btn--sm">Editar</a>
                         <form action="{{ url_for('cv.eliminar_cv', id_doc=doc._id) }}" method="POST" style="width:100%;" onsubmit="return confirm('¿Eliminar este documento?');">
-                            <button type="submit" class="btn btn-danger dashboard-action-btn">Eliminar</button>
+                            <button type="submit" class="cvb-btn cvb-btn--danger cvb-btn--sm cvb-btn--block">Eliminar</button>
                         </form>
                     </div>
                 </div>
             </div>
             {% endfor %}
         {% else %}
-            <div class="dashboard-empty">
+            <div class="dashboard-empty cvb-dsb-empty cvb-anim-scale-in cvb-anim--d3">
                 <h3>Aún no tienes documentos</h3>
                 <p>Haz clic en "+ Nuevo Documento" para comenzar.</p>
             </div>

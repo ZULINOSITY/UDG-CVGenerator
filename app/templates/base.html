@@ -5,44 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV Builder</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='src/icon/icon.webp') }}">
 </head>
-<body>
-    
-    <nav class="navbar">
-        <a href="{{ url_for('core.index') }}" class="logo">CV Builder</a>
-        
-        <div class="nav-links">
-            {% if session.get('usuario_id') %}
-                <span class="nav-text">Hola, {{ session.get('nombre') }}</span>
-                <a class="nav-text" style="color: white; font-weight: 500;">Mis Plantillas</a>
-                <a href="{{ url_for('auth.logout') }}" class="btn nav-btn">Salir</a>
-            {% else %}
-                <span class="nav-text">Menú Login</span>
-            {% endif %}
-        </div>
-    </nav>
+<body class="cvb-bg">
 
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-        <div class="toast-container">
+    <header class="cvb-header cvb-anim-fade-in cvb-anim-slide-down">
+        <a href="{{ url_for('core.index') }}" class="cvb-logo">
+            <img src="{{ url_for('static', filename='src/icon/icon.webp') }}">
+            CV Builder
+        </a>
 
-        {% for category, message in messages %}
+        {% if session.get('usuario_id') %}
+        <nav class="cvb-nav">
+                
+                <a href="{{ url_for('cv.nuevo_cv') }}" class="cvb-nav-btn cvb-nav-btn--outline">+ Nuevo Documento</a>
+                <a href="{{ url_for('auth.logout') }}" class="cvb-nav-btn cvb-nav-btn--outline">Salir</a>
+        </nav>
+        {% endif %}
+    </header>
 
-            <div class="toast toast-{{ category }}">
-            {{ message }}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="toast-container">
+                {% for category, message in messages %}
+                    <div class="toast toast-{{ category }}">{{ message }}</div>
+                {% endfor %}
             </div>
+        {% endif %}
+    {% endwith %}
 
-        {% endfor %}
-
-        </div>
-  {% endif %}
-{% endwith %}
-
-    <main class="container">
+    <main class="cvb-container">
         {% block content %}{% endblock %}
     </main>
 
     <script src="{{ url_for('static', filename='js/toasts.js') }}"></script>
-
 </body>
 </html>

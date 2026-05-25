@@ -59,7 +59,7 @@
 }
 
 .dashboard-preview {
-    background: var(--bg-input);
+    background: rgba(26, 0, 38, 0.219);
     padding: 2rem;
     display: flex;
     flex-direction: column;
@@ -78,6 +78,7 @@
 }
 
 .dashboard-info {
+    background: var(--cvb-surface-card);
     padding: 1.5rem;
     display: flex;
     flex-direction: column;

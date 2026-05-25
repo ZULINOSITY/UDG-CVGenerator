@@ -1,0 +1,130 @@
+/* ============================================================
+   CVB — cvb-layout.css  |  Layout
+   Contenedores, grids y utilidades de flexbox.
+   ============================================================
+
+   REQUIERE: cvb-tokens.css
+
+   CÓMO USAR — ejemplos rápidos
+   ──────────────────────────────────────────────────────────
+   <div class="cvb-container">           ancho máximo centrado
+   <div class="cvb-flex-center">         flex, centrado en ambos ejes
+   <div class="cvb-flex-between">        flex, espacio entre hijos
+   <div class="cvb-grid">               grid responsivo de cards
+   <div class="cvb-grid cvb-grid--2">   fuerza 2 columnas iguales
+   <section class="cvb-hero">           sección pantalla completa centrada
+   ============================================================ */
+
+
+/* ── Contenedor ─────────────────────────────────────────────── */
+/*
+   Ancho máximo centrado con padding horizontal.
+   Úsalo como wrapper de cualquier sección.
+*/
+.cvb-container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: 32px;
+}
+
+.cvb-container--sm {
+  max-width: 780px;
+}
+
+.cvb-container--xs {
+  max-width: 480px;
+}
+
+
+/* ── Flexbox helpers ────────────────────────────────────────── */
+.cvb-flex          { display: flex; }
+.cvb-flex-center   { display: flex; align-items: center; justify-content: center; }
+.cvb-flex-between  { display: flex; align-items: center; justify-content: space-between; }
+.cvb-flex-start    { display: flex; align-items: flex-start; }
+.cvb-flex-col      { display: flex; flex-direction: column; }
+.cvb-flex-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Gap helpers */
+.cvb-gap-xs  { gap: var(--cvb-space-xs); }
+.cvb-gap-sm  { gap: var(--cvb-space-sm); }
+.cvb-gap-md  { gap: var(--cvb-space-md); }
+.cvb-gap-lg  { gap: var(--cvb-space-lg); }
+
+
+/* ── Grid de cards ──────────────────────────────────────────── */
+/*
+   Grid responsivo: columnas de mínimo 260px, máximo 780px total.
+   Úsalo para agrupar cvb-card.
+*/
+.cvb-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--cvb-space-lg);
+  width: 100%;
+  max-width: 780px;
+}
+
+/* Variantes de columnas fijas */
+.cvb-grid--1 { grid-template-columns: 1fr; }
+.cvb-grid--2 { grid-template-columns: repeat(2, 1fr); }
+.cvb-grid--3 { grid-template-columns: repeat(3, 1fr); }
+
+
+/* ── Sección Hero ───────────────────────────────────────────── */
+/*
+   Ocupa al menos toda la pantalla, centra su contenido
+   en columna. Padding generoso para compensar el header fijo.
+
+   Uso:
+   <main class="cvb-hero">
+     <p  class="cvb-tagline cvb-anim-fade-up">…</p>
+     <h1 class="cvb-heading cvb-anim-fade-up cvb-anim--d1">…</h1>
+     <div class="cvb-grid cvb-anim-fade-up cvb-anim--d2">…</div>
+   </main>
+*/
+.cvb-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100px 32px 80px;
+}
+
+.cvb-subhero {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
+}
+
+/* Espaciados de sección genérica (no hero) */
+.cvb-section {
+  padding: 100px 32px 80px;
+}
+
+/* ── Responsive ─────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .cvb-container {
+    padding-inline: 18px;
+  }
+
+  .cvb-hero {
+    padding: 80px 18px 60px;
+  }
+
+  .cvb-grid {
+    grid-template-columns: 1fr;
+    max-width: 340px;
+  }
+
+  .cvb-grid--2,
+  .cvb-grid--3 {
+    grid-template-columns: 1fr;
+  }
+}

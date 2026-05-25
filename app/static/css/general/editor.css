@@ -22,13 +22,14 @@
 }
 
 .editor-toolbar {
-    background: #111827;
+    background: var(--cvb-surface-card);
     border: 1px solid var(--border-color);
     border-radius: 1rem;
     padding: 1.5rem;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    box-shadow: 0 10px 30px rgba(0,0,0,.4);
 }
 
 .toolbar-select {

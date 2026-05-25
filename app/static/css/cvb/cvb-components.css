@@ -1,0 +1,703 @@
+/* ============================================================
+   CVB — cvb-components.css  |  Componentes UI
+   Header, logo, nav, dropdown, card, botón CTA, FAB.
+   ============================================================
+
+   REQUIERE: cvb-tokens.css  cvb-base.css
+
+   ÍNDICE DE COMPONENTES
+   ──────────────────────────────────────────────────────────
+   A.  Header  (.cvb-header)
+   B.  Logo pill  (.cvb-logo)
+   C.  Nav pill  (.cvb-nav)
+   D.  Nav buttons  (.cvb-nav-btn)
+   E.  Dropdown menu  (.cvb-dropdown-wrap)
+   F.  Card  (.cvb-card)
+   G.  Card button / CTA  (.cvb-btn)
+   H.  FAB – botón flotante  (.cvb-fab)
+   ============================================================ */
+
+
+/* ══════════════════════════════════════════════════════════════
+   A. HEADER
+   ══════════════════════════════════════════════════════════════
+   Header fijo en la parte superior.
+
+   USO:
+   <header class="cvb-header">
+     <a class="cvb-logo" href="/">…</a>
+     <nav class="cvb-nav">…</nav>
+   </header>
+*/
+.cvb-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--cvb-z-header);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 32px;
+  /* Desactiva/activa el blur según la página: blur(12px) */
+  /* background-color: rgba(0,0,0,0.2); */
+  backdrop-filter: blur(0px);
+}
+
+@media (max-width: 640px) {
+  .cvb-header { padding: 14px 18px; }
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   B. LOGO PILL
+   ══════════════════════════════════════════════════════════════
+   Píldora blanca con ícono circular y nombre de la app.
+
+   USO:
+   <a class="cvb-logo" href="/">
+     <span class="cvb-logo__icon"></span>   ← placeholder arcoíris
+     Mi App
+   </a>
+
+   Con imagen real:
+   <a class="cvb-logo" href="/">
+     <img src="/static/img/logo.png" alt="Logo">
+     Mi App
+   </a>
+*/
+.cvb-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--cvb-logo-bg);
+  color: var(--cvb-logo-text);
+  padding: 10px 20px 10px 14px;
+  border-radius: var(--cvb-radius-pill);
+  font-family: var(--cvb-font-display);
+  font-size: var(--cvb-text-base);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+  transition: var(--cvb-transition);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.cvb-logo:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 28px rgba(0,0,0,0.5);
+}
+
+/* Ícono circular placeholder (gradiente arcoíris) */
+.cvb-logo__icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: conic-gradient(
+    from 0deg,
+    #f43f5e, #f97316, #eab308,
+    #22c55e, #3b82f6, #8b5cf6, #f43f5e
+  );
+}
+
+/* Si usas <img> dentro de .cvb-logo */
+.cvb-logo img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .cvb-logo {
+    font-size: 0.85rem;
+    padding: 8px 14px 8px 10px;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   C. NAV PILL
+   ══════════════════════════════════════════════════════════════
+   Contenedor pill con vidrio esmerilado para agrupar
+   botones de navegación.
+
+   USO:
+   <nav class="cvb-nav">
+     <button class="cvb-nav-btn">Menú</button>
+     <a class="cvb-nav-btn cvb-nav-btn--outline" href="/login">Entrar</a>
+   </nav>
+*/
+.cvb-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--cvb-space-xs);
+  background: var(--cvb-surface-nav);
+  border: 1px solid var(--cvb-border-nav);
+  border-radius: var(--cvb-radius-pill);
+  padding: 6px 8px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.cvb-dsb-empty {
+  background: var(--cvb-surface-nav);
+  border: 1px solid var(--cvb-border-nav);
+  border-radius: 1.5rem;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   D. NAV BUTTONS
+   ══════════════════════════════════════════════════════════════
+   Botón transparente dentro de .cvb-nav.
+
+   USO:
+   <button class="cvb-nav-btn">Menú ▾</button>
+   <a class="cvb-nav-btn cvb-nav-btn--outline" href="/login">Login</a>
+
+   MODIFICADORES:
+   .cvb-nav-btn--outline → añade borde sutil (acción primaria de nav)
+*/
+.cvb-nav-btn {
+  font-family: var(--cvb-font-display);
+  font-size: var(--cvb-text-base);
+  font-weight: 500;
+  color: var(--cvb-text-primary);
+  background: transparent;
+  border: none;
+  padding: 10px 22px;
+  border-radius: var(--cvb-radius-pill);
+  cursor: pointer;
+  letter-spacing: -0.01em;
+  transition: var(--cvb-transition);
+  white-space: nowrap;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.cvb-nav-btn:hover {
+  background: rgba(139, 92, 246, 0.18);
+  color: #fff;
+}
+
+.cvb-nav-btn--outline {
+  border: 1px solid rgba(139, 92, 246, 0.35);
+}
+
+.cvb-nav-btn--outline:hover {
+  background: rgba(139, 92, 246, 0.25);
+  border-color: rgba(139, 92, 246, 0.6);
+}
+
+/* Chevron dentro del botón de menú */
+.cvb-nav-btn__chevron {
+  font-size: 0.7rem;
+  transition: transform 0.25s ease;
+  opacity: 0.7;
+}
+
+/* Rota cuando el dropdown está abierto */
+.cvb-dropdown-wrap.open .cvb-nav-btn__chevron {
+  transform: rotate(180deg);
+}
+
+@media (max-width: 640px) {
+  .cvb-nav-btn {
+    font-size: 0.85rem;
+    padding: 9px 16px;
+  }
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   E. DROPDOWN MENU
+   ══════════════════════════════════════════════════════════════
+   Panel que se abre bajo el botón de menú.
+   Controlado con la clase .open en .cvb-dropdown-wrap (via JS).
+
+   USO:
+   <div class="cvb-dropdown-wrap">
+     <button class="cvb-nav-btn" onclick="this.parentElement.classList.toggle('open')">
+       Menú <span class="cvb-nav-btn__chevron">▾</span>
+     </button>
+     <div class="cvb-dropdown">
+       <a class="cvb-dropdown__item" href="/">
+         <span class="cvb-dropdown__icon">🏠</span> Inicio
+       </a>
+       <div class="cvb-dropdown__divider"></div>
+       <a class="cvb-dropdown__item" href="/logout">
+         <span class="cvb-dropdown__icon">🚪</span> Salir
+       </a>
+     </div>
+   </div>
+*/
+.cvb-dropdown-wrap {
+  position: relative;
+}
+
+.cvb-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%) translateY(-6px);
+  min-width: 200px;
+  background: var(--cvb-surface-dropdown);
+  border: 1px solid var(--cvb-border-dropdown);
+  border-radius: var(--cvb-radius-md);
+  padding: var(--cvb-space-sm);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.5),
+    0 0 0 1px rgba(139, 92, 246, 0.1);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.22s ease,
+    transform 0.22s var(--cvb-transition-bounce);
+  z-index: var(--cvb-z-dropdown);
+}
+
+.cvb-dropdown-wrap.open .cvb-dropdown {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateX(-50%) translateY(0);
+}
+
+.cvb-dropdown__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 11px 16px;
+  border-radius: var(--cvb-radius-sm);
+  font-family: var(--cvb-font-body);
+  font-size: var(--cvb-text-sm);
+  font-weight: 400;
+  color: var(--cvb-text-primary);
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  width: 100%;
+  text-align: left;
+  transition: var(--cvb-transition);
+}
+
+.cvb-dropdown__item:hover {
+  background: rgba(139, 92, 246, 0.18);
+  color: #fff;
+}
+
+.cvb-dropdown__icon {
+  font-size: 1rem;
+  width: 22px;
+  text-align: center;
+  opacity: 0.75;
+}
+
+.cvb-dropdown__divider {
+  height: 1px;
+  background: var(--cvb-border-dropdown);
+  margin: 4px 8px;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   F. CARD
+   ══════════════════════════════════════════════════════════════
+   Tarjeta glass con efecto de resplandor y borde brillante en hover.
+
+   USO:
+   <a class="cvb-card" href="/ruta">
+     <button class="cvb-btn">Acción</button>
+     <p class="cvb-card__desc">Descripción opcional.</p>
+   </a>
+
+   Funciona como <a>, <div> o <article>.
+*/
+
+.cvb-card-login {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--cvb-space-lg);
+  padding: var(--cvb-space-xl) 32px;
+  border-radius: var(--cvb-radius-card);
+  background: var(--cvb-surface-card);
+  border: 1px solid var(--cvb-border-card);
+  text-decoration: none;
+  color: var(--cvb-text-primary);
+  overflow: hidden;
+  transition: var(--cvb-transition);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.cvb-card-home {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  padding: var(--cvb-space-xl) 32px;
+  border-radius: var(--cvb-radius-card);
+  background: var(--cvb-surface-card);
+  border: 1px solid var(--cvb-border-card);
+  text-decoration: none;
+  color: var(--cvb-text-primary);
+  overflow: hidden;
+  transition: var(--cvb-transition);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+/* Resplandor radial en hover */
+.cvb-card-home::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at 50% 120%,
+    rgba(139, 92, 246, 0.35) 0%,
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.cvb-card-home:hover::before { opacity: 1; }
+
+/* Borde con gradiente en hover */
+.cvb-card-home::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.6),
+    rgba(217, 70, 239, 0.4),
+    rgba(139, 92, 246, 0.1)
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.cvb-card-home:hover::after { opacity: 1; }
+
+.cvb-card-home:hover {
+  transform: translateY(-5px);
+  box-shadow:
+    0 20px 60px rgba(0,0,0,0.5),
+    0 0 40px var(--cvb-glow-card);
+  border-color: rgba(139, 92, 246, 0.45);
+}
+
+/* Texto descriptivo dentro de la card */
+.cvb-card__desc {
+  font-size: var(--cvb-text-xs);
+  font-weight: 300;
+  color: var(--cvb-text-muted);
+  text-align: center;
+  line-height: 1.5;
+  max-width: 200px;
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   G. BOTÓN CTA PILL  (.cvb-btn)
+   ══════════════════════════════════════════════════════════════
+   Botón pill con gradiente acento y efecto shimmer.
+   Funciona dentro de .cvb-card o de forma independiente.
+
+   USO:
+   <button class="cvb-btn">Comenzar</button>
+   <button class="cvb-btn cvb-btn--sm">Acción pequeña</button>
+   <button class="cvb-btn cvb-btn--ghost">Secundario</button>
+
+   MODIFICADORES:
+   .cvb-btn--sm    → tamaño compacto
+   .cvb-btn--ghost → transparente con borde
+   .cvb-btn--block → ancho completo
+*/
+.cvb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 48px;
+  border-radius: var(--cvb-radius-pill);
+  font-family: var(--cvb-font-display);
+  font-size: var(--cvb-text-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #fff;
+  background: linear-gradient(
+    115deg,
+    var(--cvb-accent-start) 0%,
+    var(--cvb-accent-end)   100%
+  );
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: var(--cvb-transition);
+  text-decoration: none;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.2);
+  box-shadow:
+    0 4px 24px rgba(139, 92, 246, 0.45),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+/* Efecto shimmer */
+.cvb-btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -80%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(255,255,255,0.18) 50%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+
+/* Shimmer desde la card padre o directamente */
+.cvb-card-home:hover .cvb-btn::after,
+.cvb-btn:hover::after {
+  left: 130%;
+}
+
+.cvb-card-home:hover .cvb-btn,
+.cvb-btn:hover {
+  box-shadow:
+    0 8px 36px rgba(139, 92, 246, 0.65),
+    inset 0 1px 0 rgba(255,255,255,0.25);
+  transform: scale(1.03);
+}
+
+/* Tamaño pequeño */
+.cvb-btn--sm {
+  font-size: var(--cvb-text-base);
+  padding: 12px 28px;
+}
+
+/* Variante ghost (borde, sin relleno) */
+.cvb-btn--ghost {
+  background: transparent;
+  border: 1px solid rgba(139, 92, 246, 0.5);
+  box-shadow: none;
+  color: var(--cvb-text-primary);
+  
+  border-radius: var(--cvb-radius-pill);
+  font-family: var(--cvb-font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.cvb-btn--ghost:hover {
+  background: rgba(139, 92, 246, 0.15);
+  border-color: rgba(139, 92, 246, 0.8);
+  transform: scale(1.02);
+  box-shadow: none;
+}
+
+/* Ancho completo */
+.cvb-btn--block {
+  width: 100%;
+}
+
+/* ── Variante clara / print-stream ─────────────────────────────
+   Fondo blanco semitransparente, texto oscuro, sin gradiente
+   de acento. Ideal para acciones secundarias o sobre fondos
+   oscuros donde se quiere contraste limpio.
+ 
+   USO: <button class="cvb-btn cvb-btn--light">Exportar PDF</button>
+*/
+.cvb-btn--light {
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--cvb-bg-mid);
+  text-shadow: none;
+  box-shadow:
+    0 4px 20px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+ 
+.cvb-btn--light::after {
+  background: linear-gradient(
+    105deg,
+    transparent 0%,
+    rgba(139, 92, 246, 0.12) 50%,
+    transparent 100%
+  );
+}
+ 
+.cvb-btn--light:hover,
+.cvb-card:hover .cvb-btn--light {
+  background: rgba(255, 255, 255, 1);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(139, 92, 246, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  color: var(--cvb-bg-mid);
+  transform: scale(1.03);
+}
+ 
+/* ── Variante peligro / eliminar ────────────────────────────────
+   Gradiente rojo. Para acciones destructivas: borrar, revocar.
+ 
+   USO: <button class="cvb-btn cvb-btn--danger">Eliminar</button>
+*/
+.cvb-btn--danger {
+  background: linear-gradient(115deg, #dc2626 0%, #f43f5e 100%);
+  box-shadow:
+    0 4px 24px rgba(220, 38, 38, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+ 
+.cvb-btn--danger:hover,
+.cvb-card:hover .cvb-btn--danger {
+  box-shadow:
+    0 8px 36px rgba(220, 38, 38, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform: scale(1.03);
+}
+
+
+@media (max-width: 640px) {
+  .cvb-btn {
+    font-size: var(--cvb-text-lg);
+    padding: 15px 36px;
+  }
+}
+
+/* Alias para retrocompatibilidad con cvb-card__btn */
+.cvb-card__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 18px 48px;
+  border-radius: var(--cvb-radius-pill);
+  font-family: var(--cvb-font-display);
+  font-size: var(--cvb-text-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #fff;
+  background: linear-gradient(
+    115deg,
+    var(--cvb-accent-start) 0%,
+    var(--cvb-accent-end)   100%
+  );
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: var(--cvb-transition);
+  text-decoration: none;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.2);
+  box-shadow:
+    0 4px 24px rgba(139, 92, 246, 0.45),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+}
+.cvb-card__btn::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -80%;
+  width: 60%;
+  height: 200%;
+  background: linear-gradient(105deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+  transform: skewX(-20deg);
+  transition: left 0.5s ease;
+}
+.cvb-card:hover .cvb-card__btn::after,
+.cvb-card__btn:hover::after { left: 130%; }
+.cvb-card:hover .cvb-card__btn,
+.cvb-card__btn:hover {
+  box-shadow: 0 8px 36px rgba(139,92,246,0.65), inset 0 1px 0 rgba(255,255,255,0.25);
+  transform: scale(1.03);
+}
+.cvb-card__btn--sm { font-size: var(--cvb-text-base); padding: 12px 28px; }
+
+@media (max-width: 640px) {
+  .cvb-card__btn { font-size: var(--cvb-text-lg); padding: 15px 36px; }
+}
+
+
+/* ══════════════════════════════════════════════════════════════
+   H. FAB – BOTÓN FLOTANTE
+   ══════════════════════════════════════════════════════════════
+   Botón fijo en la esquina inferior derecha.
+   Ideal para ayuda, chat o acceso rápido.
+
+   USO:
+   <a class="cvb-fab" href="/help">❓ Ayuda</a>
+*/
+.cvb-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: var(--cvb-z-fab);
+  display: flex;
+  align-items: center;
+  gap: var(--cvb-space-sm);
+  padding: 14px 24px;
+  border-radius: var(--cvb-radius-pill);
+  background: var(--cvb-surface-fab);
+  border: 1px solid rgba(160, 100, 255, 0.35);
+  font-family: var(--cvb-font-display);
+  font-size: var(--cvb-text-base);
+  font-weight: 500;
+  color: #fff;
+  cursor: pointer;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow:
+    0 4px 24px var(--cvb-glow-fab),
+    inset 0 1px 0 rgba(255,255,255,0.15);
+  transition: var(--cvb-transition);
+  text-decoration: none;
+}
+
+.cvb-fab:hover {
+  background: rgba(130, 80, 220, 0.85);
+  transform: translateY(-3px);
+  box-shadow:
+    0 8px 32px rgba(100, 60, 200, 0.55),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+}
+
+@media (max-width: 640px) {
+  .cvb-fab {
+    bottom: 18px;
+    right: 18px;
+    padding: 11px 18px;
+    font-size: 0.85rem;
+  }
+}

@@ -1,27 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="auth-container">
-    <div class="card auth-card">
-        <h2 class="card-title">Crear usuario</h2>
-
-        <form action="{{ url_for('auth.register') }}" method="POST">
+<div class="cvb-hero">
+    <div class="cvb-card-login cvb-anim-scale-in" style="width: 100%; max-width: 420px; padding: 48px 40px;">
+        <h2 class="cvb-heading cvb-anim-slide-down cvb-anim--d1 cvb-heading-lg">Crear usuario</h2>
+        <form action="{{ url_for('auth.register') }}" method="POST" style="width: 100%">
             <div class="form-group">
-                <label>Nombre</label>
-                <input type="text" name="nombre" class="form-control" placeholder="Tu nombre" required>
+                <label class="cvb-subtagline cvb-anim-fade-up cvb-anim--d1">Nombre</label>
+                <input type="text" name="nombre" class="form-control cvb-anim-fade-up cvb-anim--d2" placeholder="Tu nombre" required>
             </div>
             <div class="form-group">
-                <label>Correo electrónico</label>
-                <input type="email" name="correo" class="form-control" placeholder="correo@ejemplo.com" required>
+                <label class="cvb-subtagline cvb-anim-fade-up cvb-anim--d3">Correo electrónico</label>
+                <input type="email" name="correo" class="form-control cvb-subtagline cvb-anim-fade-up cvb-anim--d4" placeholder="correo@ejemplo.com" required>
             </div>
             <div class="form-group">
-                <label>Contraseña</label>
-                <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+                <label class="cvb-subtagline cvb-anim-fade-up cvb-anim--d5">Contraseña</label>
+                <input type="password" name="password" class="form-control cvb-anim-fade-up cvb-anim--d6" placeholder="••••••••" required>
             </div>
-            <button type="submit" class="btn btn-light btn-block">Registrarme</button>
+            <button type="submit" class="cvb-btn cvb-btn--block cvb-btn--sm cvb-anim-fade-up cvb-anim--d7">Registrarme</button>
         </form>
-
-        <div class="auth-footer">
+        <div class="auth-footer cvb-text-muted cvb-text-sm cvb-anim-fade-up cvb-anim--d6">
             ¿Ya tienes cuenta? <a href="{{ url_for('auth.login') }}">Iniciar sesión</a>
         </div>
     </div>
