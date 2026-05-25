@@ -6,18 +6,19 @@
     <title>CV Builder</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/cvb.css') }}">
+    <link rel="icon" type="image/png" href="src/icon/icon.webp">
 </head>
 <body class="cvb-bg">
 
     <header class="cvb-header cvb-anim-fade-in cvb-anim-slide-down">
         <a href="{{ url_for('core.index') }}" class="cvb-logo">
-            <span class="cvb-logo__icon"></span>
+            <img src="{{ url_for('static', filename='src/icon/icon.webp') }}">
             CV Builder
         </a>
 
         {% if session.get('usuario_id') %}
         <nav class="cvb-nav">
-                <span class="cvb-nav-btn">Hola, {{ session.get('nombre') }}</span>
+                <a href="{{ url_for('cv.nuevo_cv') }}" class="cvb-nav-btn cvb-nav-btn--outline">+ Nuevo Documento</a>
                 <a href="{{ url_for('auth.logout') }}" class="cvb-nav-btn cvb-nav-btn--outline">Salir</a>
         </nav>
         {% endif %}

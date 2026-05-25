@@ -1,5 +1,14 @@
 /* =========================================
    STYLE.CSS - IMPORTADOR PRINCIPAL
+   Importa todos los módulos del sistema de diseño.
+   ___________________________________________
+   cvb-tokens.css       → Variables (obligatorio primero)
+   cvb-base.css         → Reset y body
+   cvb-bg.css           → Fondo degradado + ruido
+   cvb-animations.css   → Keyframes y clases de animación
+   cvb-typography.css   → Fuentes, tamaños, colores de texto
+   cvb-layout.css       → Contenedores, flex, grid, hero
+   cvb-components.css   → Header, nav, card, botón, FAB
 ========================================= */
 @import url('general/variables.css');
 @import url('general/components.css');
@@ -12,4 +21,10 @@
 @import url('plantillas/convencional.css');
 @import url('plantillas/decorada.css');
 @import url('plantillas/formal.css');
-
+@import url('cvb/cvb-tokens.css');
+@import url('cvb/cvb-base.css');
+@import url('cvb/cvb-bg.css');
+@import url('cvb/cvb-animations.css');
+@import url('cvb/cvb-typography.css');
+@import url('cvb/cvb-layout.css');
+@import url('cvb/cvb-components.css');

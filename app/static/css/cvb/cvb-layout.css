@@ -97,12 +97,16 @@
   padding: 100px 32px 80px;
 }
 
-/* Espaciados de sección genérica (no hero) */
-.cvb-section {
-  padding-block: 64px;
-  padding-inline: 32px;
+.cvb-subhero {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 3rem;
 }
 
+/* Espaciados de sección genérica (no hero) */
+.cvb-section {
+  padding: 100px 32px 80px;
+}
 
 /* ── Responsive ─────────────────────────────────────────────── */
 @media (max-width: 640px) {

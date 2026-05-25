@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV Builder</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/cvb.css') }}">
+    <link rel="icon" type="image/png" href="src/icon/icon.webp">
 </head>
 <body class="cvb-bg">
 
     <main class="cvb-hero">
         <p class="cvb-tagline cvb-anim-fade-up">Crea tu CV en minutos</p>
-        <h1 class="cvb-heading cvb-anim-fade-up cvb-anim--d1">¿Por dónde quieres<br>empezar?</h1>
+        <h1 class="cvb-heading cvb-anim-fade-up cvb-anim--d1" style="margin-bottom:1rem;">¿Por dónde quieres<br>empezar?</h1>
 
         <div class="cvb-grid cvb-anim-fade-up cvb-anim--d2">
             <a href="{{ url_for('auth.login') }}" class="cvb-card-home">
